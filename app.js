@@ -46,6 +46,7 @@ app
 
    // set url
    .get('/', httpPage.index)
+   .get('/manage', httpPage.manage)
 
 ;
 
@@ -58,5 +59,6 @@ common.setConsole(console)
       .setLang(lang)
       .rebuildConfig(config)
       .bindEvent('receiver')
+      .bindEvent('manage')
       .bindEvent('index')
       .bindServer(httpServer);

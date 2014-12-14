@@ -1,33 +1,15 @@
 {
-  "name": "jd_node_base",
+  "name": "barrage-server",
   "version": "0.0.1",
-  "description": "a sample node.js app for jae",
-  "main": "app.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "dependencies": {
-    "http-client": "~1.0.0",
-    "express": "*",
+    "express": "3.4.8",
+    "ejs": "*",
     "socket.io": "*",
     "express-less": "*",
-    "ejs": "*"
-  },
-  "engines": {
-    "node": "0.10.13",
-    "npm": "1.3.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://code.jd.com/jdappengine/jd_node_base_1.git"
-  },
-  "keywords": [
-    "node",
-    "jae"
-  ],
-  "author": "jae",
-  "license": "BSD",
-  "gitHead": "a4c182a5121aa047e62f13be1135e6fb309dae4f",
-  "devDependencies": {},
-  "optionalDependencies": {}
+    "rich-console": "*"
+  }
 }

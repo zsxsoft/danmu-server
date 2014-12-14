@@ -7,3 +7,11 @@ exports.index = function(req, res){
 		lang: exports.lang
 	});
 };
+
+exports.manage = function(req, res){
+	res.render('manage', {
+		title: exports.lang.global.manage,
+		lang: exports.lang,
+		config: exports.config
+	});
+};
