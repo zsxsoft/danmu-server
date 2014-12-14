@@ -2,7 +2,7 @@ exports.config = {
 	"lang": "zh-cn",
 	"password": "123456",
 	"manage": {
-		"keyword": ""
+		"keyword": "testkeyword"
 	},
 	"webServer":{
 		"port": 4000,

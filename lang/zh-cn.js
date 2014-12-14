@@ -10,6 +10,10 @@ exports.lang = {
 		receiver: "弹幕接收器",
 		manage: "弹幕关键词过滤",
 	},
+	index: {
+		sendBarrage: "在这里，输入你的弹幕吧！",
+		send: "喷射"
+	},
 	manage: {
 		enterKeyword: "在这里输入正则表达式",
 		save: "保存",
