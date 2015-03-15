@@ -21,7 +21,7 @@ build/Release
 
 # Dependency directory
 # Commenting this out is preferred by some people, see
-# https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
 node_modules
 
 # Users Environment Variables
@@ -37,9 +37,6 @@ node_modules
 .DS_Store
 .AppleDouble
 .LSOverride
-
-# Icon must end with two \r
-Icon
 
 # Thumbnails
 ._*
@@ -73,3 +70,6 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+
+# Windows shortcuts
+*.lnk

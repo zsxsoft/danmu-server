@@ -1,15 +1,18 @@
 {
-  "name": "barrage-server",
+  "name": "danmu-server",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.4.8",
+    "express": "^4.8.0",
+    "morgan": "^1.2.2",
+    "errorhandler": "^1.1.1",
+    "body-parser": "*",
+    "async": "*",
     "ejs": "*",
-    "socket.io": "*",
-    "express-less": "*",
-    "rich-console": "*"
+    "mysql": "*",
+    "socket.io": "*"
   }
 }
