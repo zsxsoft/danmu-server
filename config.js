@@ -1,16 +1,18 @@
 module.exports = {
-	"manage": {
-		"password": "123456", // 管理页面密码
-	},
-	"danmu": {
-		"keyword": {
-			"block": "testkeyword", // 拦截关键词
-			"replacement": "keyword2" // 替换关键词
-		},
-		"blockusers": [ // 封禁用户
-		],
-		"check": false, // 审核开关
-		"length": 100 // 队列最大长度
+	"rooms": {
+		"default": {
+			"display": "默认",
+			"connectpassword": "123456", // 客户端连接密码
+			"managepassword": "123456", // 管理密码
+			"keyword": {
+				"block": "testkeyword", // 拦截关键词
+				"replacement": "keyword2" // 替换关键词
+			},
+			"blockusers": [ // 封禁用户
+			],
+			"check": false, // 审核开关
+			"maxlength": 100 // 队列最大长度
+		}
 	},
 	"database": {
 		"type": "mysql", // 数据库类型
@@ -25,7 +27,7 @@ module.exports = {
 		"interval": 100, // 弹幕发送间隔
 		"singlesize": 10 // 每次弹幕发送数量
 	},
-	"http":{
+	"http": {
 		"port": 3000 // 服务器端口
 	}
 }
