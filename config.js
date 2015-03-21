@@ -10,6 +10,7 @@ module.exports = {
 				"replacement": "keyword2" // 替换关键词
 			},
 			"blockusers": [ // 封禁用户
+				"test"
 			],
 			"check": false, // 审核开关
 			"maxlength": 100 // 队列最大长度

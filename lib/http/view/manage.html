@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="danmu.manage" ng-controller="MainCtrl">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/manage.css" rel="stylesheet">
+	<script src="http://cdn.staticfile.org/angular.js/1.3.0-beta.9/angular.min.js"></script>
+	<script src="http://cdn.staticfile.org/angular-ui-bootstrap/0.11.2/ui-bootstrap-tpls.min.js"></script>
+	<title>系统管理</title>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid"><div class="navbar-header"><a class="navbar-brand" href="#">系统管理</a></div></div>
+	</nav>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12 col-md-12 main">
+				<accordion close-others="accordion.closeOther">
+					<accordion-group heading="弹幕搜索" is-open="accordion.openDanmu">
+					<div ng-controller="DanmuCtrl" class="container">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="搜索弹幕" ng-model="danmu.searchKey" ng-keydown="danmu.checkKeyDown($event)">						
+						<span class="input-group-btn">
+							<button class="btn btn-success" type="button" ng-click="danmu.doSearch()">搜索</button>
+						</span>
+					</div>
+					<div class="row"> 
+						<p><br/></p>
+					<table class="table table-hover">
+						<tr><th>ID</th><th>用户</th><th>弹幕</th></tr>
+						<tr ng-repeat="item in danmu.result"><td>{{item.id}}</td><td>{{item.user}}</td><td>{{item.text}}</td></tr>
+					</table>
+					</div>
+					
+					</div>
+					</accordion-group>
+					<accordion-group heading="黑名单管理" is-open="accordion.openBlock">
+					<div ng-controller="BlockCtrl" class="container">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="添加用户" ng-model="block.textUser" ng-keydown="block.checkKeyDown($event)">						
+						<span class="input-group-btn">
+							<button class="btn btn-success" type="button" ng-click="block.doAdd()">添加</button>
+						</span>
+					</div>
+					<div class="row"> 
+						<p><br/></p>
+						<button type="button" class="btn btn-primary btn-sm" ng-repeat="item in block.result track by $index" style="margin-right: 5px" ng-click="block.doRemove(item)" ng-value="item">{{item}}</button>
+					</div>
+					</div>
+					</accordion-group>
+					<accordion-group heading="参数设置" is-open="accordion.openConfig">哇</accordion-group>
+				</accordion>
+			</div>
+		</div>
+	</div>
+	<script src="/manage_app.js"></script>
+</body>
+</html>
