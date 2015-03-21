@@ -14,5 +14,9 @@
     "ejs": "*",
     "mysql": "*",
     "socket.io": "*"
+  },
+  "dev-dependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "*"
   }
 }

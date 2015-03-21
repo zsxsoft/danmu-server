@@ -7,7 +7,7 @@
 	global.utils = require("./lib/utils");
 
 	// 事件处理
-	global.coordinator = new (require('events').EventEmitter);
+	global.coordinator = new (require('events').EventEmitter)();
 
 	// 加载模块
 	async.each(["child", "http", "socket"], function(module, callback) {
