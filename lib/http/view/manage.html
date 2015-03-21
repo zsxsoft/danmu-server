@@ -17,8 +17,26 @@
 	</nav>
 	<div class="container-fluid">
 		<div class="row">
+			<alert type="danger" ng-show="haveError">错误{{err.code}}：{{err.desc}}；建议刷新页面。</alert>
 			<div class="col-sm-12 col-md-12 main">
 				<accordion close-others="accordion.closeOther">
+					<accordion-group heading="管理信息" is-open="accordion.openInfo" is-disabled="accordion.disableInfo">
+					<div class="container">
+					<alert type="danger" ng-show="!isLogin">务必先填入房间信息再进行管理。</alert>
+					<alert type="success" ng-show="isLogin">你选择了{{room}}房间</alert>
+					<div class="list-group" ng-show="!isLogin">
+					<a href="#" class="list-group-item" ng-class="{active: room == roomS.id}" ng-repeat="roomS in roomList" ng-click="initRoom(roomS.id)">{{roomS.display}} ({{roomS.id}})</a>
+					</div>
+					<form ng-submit="enterRoom(password)" ng-show="!isLogin">
+					<div class="input-group">
+						<input type="password" class="form-control" placeholder="房间密码" ng-model="password">						
+						<span class="input-group-btn">
+							<button class="btn btn-success" type="submit">确认</button>
+						</span>
+					</div>
+					</form>
+					</div>
+					</accordion-group>
 					<accordion-group heading="弹幕搜索" is-open="accordion.openDanmu">
 					<div ng-controller="DanmuCtrl" class="container">
 					<form ng-submit="danmu.doSearch()">
