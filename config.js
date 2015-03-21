@@ -2,6 +2,7 @@ module.exports = {
 	"rooms": {
 		"default": {
 			"display": "默认",
+			"table": "room_default", // 数据表
 			"connectpassword": "123456", // 客户端连接密码
 			"managepassword": "123456", // 管理密码
 			"keyword": {
@@ -20,7 +21,6 @@ module.exports = {
 		"username": "root", // 数据库用户名
 		"password": "123456", // 数据库密码
 		"db": "danmu", // 数据库
-		"table": "danmu" // 数据表
 	},
 	"websocket": {
 		"password": "clientpassword", // 客户端和服务端连接密码
