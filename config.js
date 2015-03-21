@@ -23,8 +23,8 @@ module.exports = {
 		"db": "danmu", // 数据库
 	},
 	"websocket": {
-		"interval": 100, // 弹幕发送间隔
-		"singlesize": 10 // 每次弹幕发送数量
+		"interval": 10, // 弹幕发送间隔
+		"singlesize": 5 // 每次弹幕发送数量
 	},
 	"http": {
 		"port": 3000 // 服务器端口

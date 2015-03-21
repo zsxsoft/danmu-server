@@ -13,7 +13,7 @@
 	async.each(["child", "http", "socket"], function(module, callback) {
 		require("./lib/" + module).init(callback);
 	}, function(err) {
-		log.log("Init completed!");
+		log.log("服务器初始化完成");
 	});
 
 })();
