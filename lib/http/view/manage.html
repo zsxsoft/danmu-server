@@ -21,12 +21,14 @@
 				<accordion close-others="accordion.closeOther">
 					<accordion-group heading="弹幕搜索" is-open="accordion.openDanmu">
 					<div ng-controller="DanmuCtrl" class="container">
+					<form ng-submit="danmu.doSearch()">
 					<div class="input-group">
-						<input type="text" class="form-control" placeholder="搜索弹幕" ng-model="danmu.searchKey" ng-keydown="danmu.checkKeyDown($event)">						
+						<input type="text" class="form-control" placeholder="搜索弹幕" ng-model="danmu.searchKey">						
 						<span class="input-group-btn">
-							<button class="btn btn-success" type="button" ng-click="danmu.doSearch()">搜索</button>
+							<button class="btn btn-success" type="submit">搜索</button>
 						</span>
 					</div>
+					</form>
 					<div class="row"> 
 						<p><br/></p>
 					<table class="table table-hover">
@@ -39,19 +41,25 @@
 					</accordion-group>
 					<accordion-group heading="黑名单管理" is-open="accordion.openBlock">
 					<div ng-controller="BlockCtrl" class="container">
+					<form ng-submit="block.doAdd()">
 					<div class="input-group">
-						<input type="text" class="form-control" placeholder="添加用户" ng-model="block.textUser" ng-keydown="block.checkKeyDown($event)">						
+						<input type="text" class="form-control" placeholder="添加用户" ng-model="block.textUser">						
 						<span class="input-group-btn">
-							<button class="btn btn-success" type="button" ng-click="block.doAdd()">添加</button>
+							<button class="btn btn-success" type="submit">添加</button>
 						</span>
 					</div>
+					</form>
 					<div class="row"> 
 						<p><br/></p>
 						<button type="button" class="btn btn-primary btn-sm" ng-repeat="item in block.result track by $index" style="margin-right: 5px" ng-click="block.doRemove(item)" ng-value="item">{{item}}</button>
 					</div>
 					</div>
 					</accordion-group>
-					<accordion-group heading="参数设置" is-open="accordion.openConfig">哇</accordion-group>
+					<accordion-group heading="参数设置" is-open="accordion.openConfig">
+					<div ng-controller="ConfigCtrl" class="container">
+					
+					</div>
+					</accordion-group>
 				</accordion>
 			</div>
 		</div>
