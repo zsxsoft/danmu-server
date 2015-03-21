@@ -23,7 +23,6 @@ module.exports = {
 		"db": "danmu", // 数据库
 	},
 	"websocket": {
-		"password": "clientpassword", // 客户端和服务端连接密码
 		"interval": 100, // 弹幕发送间隔
 		"singlesize": 10 // 每次弹幕发送数量
 	},
