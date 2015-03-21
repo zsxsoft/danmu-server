@@ -10,7 +10,7 @@
 	global.coordinator = new (require('events').EventEmitter);
 
 	// 加载模块
-	async.each(["child", "http", "socket", "check"], function(module, callback) {
+	async.each(["child", "http", "socket"], function(module, callback) {
 		require("./lib/" + module).init(callback);
 	}, function(err) {
 		log.log("Init completed!");
