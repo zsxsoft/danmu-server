@@ -31,6 +31,7 @@ module.exports = {
 		"port": 3000 // 服务器端口
 	},
 	"env": {
-		"childprocess": false // 多进程（child_process），在BAE上请关闭
+		"childprocess": false, // 多进程（child_process），好像没什么用
+		"log": false // 日志开关
 	}
 }
