@@ -29,5 +29,8 @@ module.exports = {
 	},
 	"http": {
 		"port": 3000 // 服务器端口
+	},
+	"env": {
+		"childprocess": false // 多进程（child_process），在BAE上请关闭
 	}
 }
