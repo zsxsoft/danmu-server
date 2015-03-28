@@ -28,7 +28,11 @@ module.exports = {
 		"singlesize": 5 // 每次弹幕发送数量
 	},
 	"http": {
-		"port": 3000 // 服务器端口
+		"port": 3000, // 服务器端口
+		"headers": { // HTTP头
+			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Methods": "POST"
+		}
 	},
 	"env": {
 		"childprocess": false, // 多进程（child_process），好像没什么用
