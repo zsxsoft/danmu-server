@@ -10,9 +10,10 @@
 	global.coordinator = new (require('events').EventEmitter)();
 
 	// 加载模块
-	async.each(["child", "http", "socket"], function(module, callback) {
+	async.each(["transfer", "http", "socket", "database"], function(module, callback) {
 		require("./lib/" + module).init(callback);
 	}, function(err) {
+		coordinator.emit("configUpdated");
 		log.log("服务器初始化完成");
 	});
 
