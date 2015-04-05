@@ -1,10 +1,12 @@
 (function() {
 	"use strict";
+	global.version = "0.0.1-20150405b";
 
 	var async = require("async");
 	var config = global.config = require('./config');
 	// 事件处理
 	global.coordinator = new (require('events').EventEmitter)();
+
 
 	// 公用函数
 	require("./lib/utils");
