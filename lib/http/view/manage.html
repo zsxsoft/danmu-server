@@ -96,6 +96,10 @@
 							<label for="configRoomLength" class="col-sm-2 control-label">弹幕堆积队列最大长度</label>
 							<div class="col-sm-10"><input type="number" class="form-control" id="configRoomLength" placeholder="" ng-model="config.realConfig.maxlength"></div>
 						</div>
+						<div class="form-group">
+							<label for="configOpenState" class="col-sm-2 control-label">弹幕接收开关</label>
+							<div class="col-sm-10"><button type="button" class="btn" ng-class="{active: config.realConfig.openstate, 'btn-danger': !config.realConfig.openstate, 'btn-success': config.realConfig.openstate}" id="configOpenState" ng-click="config.setState()">当前状态：{{config.text.openstate}}</button></div>
+						</div>
 						<div class="row">
 						<button class="col-sm-offset-5 btn btn-success" type="submit">更新配置</button>
 						</div>

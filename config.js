@@ -12,7 +12,8 @@ module.exports = {
 			"blockusers": [ // 封禁用户
 				"test"
 			],
-			"maxlength": 100 // 队列最大长度
+			"maxlength": 100, // 队列最大长度
+			"openstate": true // 房间开关
 		}
 	},
 	"database": {
