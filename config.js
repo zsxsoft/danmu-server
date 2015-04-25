@@ -5,6 +5,7 @@ module.exports = {
 			"table": "room_default", // 数据表
 			"connectpassword": "123456", // 客户端连接密码
 			"managepassword": "123456", // 管理密码
+			"advancedpassword": "123456", // 高级弹幕密码
 			"keyword": {
 				"block": "testkeyword", // 拦截关键词
 				"replacement": "keyword2" // 替换关键词

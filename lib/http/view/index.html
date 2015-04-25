@@ -60,7 +60,7 @@
 			<div class="row">
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" id="saveContent">保留发送内容</label>
+						<input type="checkbox" id="saveContent" disabled>保留发送内容</label>
 				</div>
 			</div>
 			<div class="row">
@@ -74,50 +74,52 @@
 		</div>
 	</div>
 	<script>
-var b2h = function(s) {
-  var i, l, n, o = '';
-  s += '';
-  for (i = 0, l = s.length; i < l; i++) {
-    n = s.charCodeAt(i).toString(16);
-    o += n.length < 2 ? '0' + n : n;
-  }
-  return o;
-}
 $(function() {
 
-  if (localStorage.getItem("danmuHash") === null) {
-  	// HTML5 帆布指纹（Canvas fingerprinting）
-    var canvas = document.createElement('canvas');
-    var ctx = canvas.getContext('2d');
-    ctx.textBaseline = "top";
-    ctx.font = "14px '微软雅黑'";
-    ctx.fillStyle = "#0281cd";
-    ctx.fillText("zsx's Danmu Server\n\n弹幕验证帆布指纹", 5, 5);
-    ctx.fillText("http://www.zsxsoft.com/", 5, 30);
-    var b64 = b2h(atob(canvas.toDataURL().replace("data:image/png;base64,", "")).slice(-32, -24));
-    localStorage.danmuHash = b64;
-  }
-  $(".modal").modal({
-  	backdrop: false
-  });
+	var b2h = function(s) {
+		var i, l, n, o = '';
+		s += '';
+		for (i = 0, l = s.length; i < l; i++) {
+			n = s.charCodeAt(i).toString(16);
+			o += n.length < 2 ? '0' + n : n;
+		}
+		return o;
+	}
 
-  var room = "default";
-  $("#room-choose").on("click", ".list-group-item", function(e) {
-  	room = $(this).data("value");
-  	$(".modal").modal("hide");
-  });
-  $("#btn-send").click(function() {
-    $.post("/post", {
-      "text": $("#txt-barrage").val(),
-      "hash": localStorage.danmuHash,
-      "room": room
-    }).done(function(data) {
-      alert(data);
-      if (!$("#saveContent")[0].checked) $("#txt-barrage").val("").focus();
-      $("#btn-send").removeAttr('disabled');
-    });
-    $("#btn-send").attr("disabled", "disabled");
-  });
+	if (localStorage.getItem("danmuHash") === null) {
+		// HTML5 帆布指纹（Canvas fingerprinting）
+		var canvas = document.createElement('canvas');
+		var ctx = canvas.getContext('2d');
+		ctx.textBaseline = "top";
+		ctx.font = "14px '微软雅黑'";
+		ctx.fillStyle = "#0281cd";
+		ctx.fillText("zsx's Danmu Server\n\n弹幕验证帆布指纹", 5, 5);
+		ctx.fillText("http://www.zsxsoft.com/", 5, 30);
+		var b64 = b2h(atob(canvas.toDataURL().replace("data:image/png;base64,", "")).slice(-32, -24));
+		localStorage.danmuHash = b64;
+	}
+	$(".modal").modal({
+		backdrop: false
+	});
+
+	var room = "default";
+	$("#room-choose").on("click", ".list-group-item", function(e) {
+		room = $(this).data("value");
+		$(".modal").modal("hide");
+	});
+	$("#btn-send").click(function() {
+		$.post("/post", {
+			"text": $("#txt-barrage").val(),
+			"hash": localStorage.danmuHash,
+			"room": room
+		}).done(function(data) {
+			alert(data);
+			if (!$("#saveContent")[0].checked) $("#txt-barrage").val("").focus();
+			$("#btn-send").removeAttr('disabled');
+		});
+		$("#btn-send").attr("disabled", "disabled");
+	});
 });
+
   </script></body>
 </html>
