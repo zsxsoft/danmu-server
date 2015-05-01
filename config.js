@@ -38,16 +38,25 @@ module.exports = {
 		"headers": { // HTTP头
 			//"Access-Control-Allow-Origin": "*",
 			//"Access-Control-Allow-Methods": "POST"
-		}
+		},
+		"sessionKey": "hey"
+	},
+	"cache": {
+		"type": "memcached", // 缓存类型，支持memcached和aliyun。后者需要npm install aliyun-sdk
+		"host" : "192.168.140.129:11211", // 缓存服务器地址，可用socket
+		"auth": false, // 是否打开身份验证
+		"authUser": "", // 身份验证账号
+		"authPassword": "" // 身份验证密码
 	},
 	"env": {
 		"log": false // 日志开关
 	}, 
 	"ext": {
 		"weibo": {
-			"clientID": '',
-			"clientSecret": '',
-			"callbackURL": '/auth/sina/callback'
+			"clientID": '', // App ID
+			"clientSecret": '', // App Secret
+			"callbackURL": 'http://test.zsxsoft.com:3000/auth/sina/callback', // 这里填写的是 网站地址/auth/sina/callback
+			"requireState": true // 是否打开CSRF防御
 		}
 	}
 }
