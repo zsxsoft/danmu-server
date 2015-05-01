@@ -20,7 +20,11 @@ danmu-server
 
 ## 部署方式
 
-下载并安装[nodejs](https://nodejs.org)或[iojs](https://iojs.org/cn/)，然后``npm install``后即可直接``npm start``启动。
+ 1. 下载并安装[iojs](https://iojs.org/cn/)、[MariaDB](https://mariadb.org/)和[Memcached(Linux)](http://memcached.org/)。Windows用户请自行查找适合的Memcached版本，如不使用自动封号和新浪微博可不安装。另外，[Node](https://nodejs.org)和[MySQL](https://www.mysql.com/)也同样支持。
+ 2. 配置MariaDB，创建数据库等，不需要创建数据表。
+ 3. 修改``config.js``，使其参数与环境相符。如果要用阿里云的OCS服务则需要在``config.js``里把``cache/type``调整为``aliyun``然后再``npm install aliyun-sdk``。
+ 4. 切换到``cmd``或``sh``，``cd``到程序所在目录执行``npm install``，安装程序依赖库。
+ 5. 现在，你可以直接``npm start``启动。
 
 ## 搭配项目
 
@@ -40,7 +44,7 @@ danmu-server
 
 > mariadb-server.x86_64 1:5.5.41-2.el7_0
 
-> 阿里云杭州机房，一个福州联通客户端连接。缓存选用OCS。 
+> 阿里云杭州机房D，一个福州联通客户端连接。缓存选用OCS。 
 
 > ab -n 6000 -c 1000 -v 4  -p "post.txt" -C "weibo=嘛就这样;connect.sid=啊啊" -T "application/x-www-form-urlencoded" http://127.0.0.1:3000/post
 
