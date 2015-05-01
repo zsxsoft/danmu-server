@@ -18,7 +18,8 @@ module.exports = {
 				"test"
 			],
 			"maxlength": 100, // 队列最大长度
-			"openstate": true // 房间开关
+			"openstate": true, // 房间开关
+			"textlength": 20 // 弹幕最大长度
 		}
 	},
 	"database": {
@@ -59,6 +60,7 @@ module.exports = {
 			"requireState": true // 是否打开CSRF防御
 		},
 		"autoban": {
+			"block": 3, // 被拦截超过一定数字自动封号
 
 		}
 	}
