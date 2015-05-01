@@ -6,11 +6,6 @@
 "use strict";
 global.version = "0.0.1-20150405b";
 global.config = require('./config');
-global.async = require("async");
-	
-// 事件处理
-global.coordinator = new (require('events').EventEmitter)();
-
 
 // 公用函数
 require("./lib/utils");
