@@ -41,7 +41,6 @@ module.exports = {
 		}
 	},
 	"env": {
-		"childprocess": false, // 多进程（child_process），好像没什么用
 		"log": false // 日志开关
 	}
 }
