@@ -12,7 +12,7 @@ require("./lib/utils");
 
 
 // 加载模块
-async.map(["ext", "transfer", "database", "http", "socket"], function (module, callback) {
+async.map(["ext", "cache", "transfer", "database", "http", "socket"], function (module, callback) {
 	require("./lib/" + module).init(callback);
 }, function (err) {
 		coordinator.emit("configUpdated");
