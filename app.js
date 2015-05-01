@@ -4,7 +4,7 @@
 /* global global */
 
 "use strict";
-global.version = "0.0.1-20150405b";
+global.version = "0.0.3-20150501b";
 global.config = require('./config');
 
 // 公用函数
