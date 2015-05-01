@@ -36,11 +36,18 @@ module.exports = {
 	"http": {
 		"port": 3000, // 服务器端口
 		"headers": { // HTTP头
-			"Access-Control-Allow-Origin": "*",
-			"Access-Control-Allow-Methods": "POST"
+			//"Access-Control-Allow-Origin": "*",
+			//"Access-Control-Allow-Methods": "POST"
 		}
 	},
 	"env": {
 		"log": false // 日志开关
+	}, 
+	"ext": {
+		"weibo": {
+			"clientID": '',
+			"clientSecret": '',
+			"callbackURL": '/auth/sina/callback'
+		}
 	}
 }
