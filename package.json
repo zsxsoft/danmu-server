@@ -1,7 +1,7 @@
 {
   "name": "danmu-server",
   "version": "0.0.1",
-  "private": true,
+  "license": "mit",
   "scripts": {
     "start": "node app.js"
   },
