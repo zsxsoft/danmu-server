@@ -48,25 +48,32 @@ danmu-server
 
 > ab -n 6000 -c 1000 -v 4  -p "post.txt" -C "weibo=嘛就这样;connect.sid=啊啊" -T "application/x-www-form-urlencoded" http://127.0.0.1:3000/post
 
-默认配置，开启新浪微博登录，开启自动封禁。RPS 225.38 / 241.58
+默认配置，开启新浪微博登录，开启自动封禁。QPS 225.38 / 241.58
 		
-默认配置，关闭新浪微博登录，关闭自动封禁。RPS 461.97 / 431.51
+默认配置，关闭新浪微博登录，关闭自动封禁。QPS 461.97 / 431.51
 
-默认配置，删除日志输出，关闭新浪微博登录，关闭自动封禁。RPS 720.89 / 812.66
+默认配置，删除日志输出，关闭新浪微博登录，关闭自动封禁。QPS 720.89 / 812.66
 
 
 环境：
  > iojs v1.8.1
  
-默认配置，开启新浪微博登录，开启自动封禁。RPS 444.42 / 536.25
+默认配置，开启新浪微博登录，开启自动封禁。QPS 444.42 / 536.25
 
-默认配置，关闭新浪微博登录，关闭自动封禁。RPS 633.99 / 865.28
+默认配置，关闭新浪微博登录，关闭自动封禁。QPS 633.99 / 865.28
 
 ## 流程图
 ![流程图](http://zsxsoft.github.io/danmu-server/route.png)
 
 ## 协议
 The MIT License (MIT)
+
+## 博文
+[弹幕服务器及搭配之透明弹幕客户端研究结题报告](http://blog.zsxsoft.com/post/15)
+
+[弹幕服务器及搭配之透明弹幕客户端研究中期报告](http://blog.zsxsoft.com/post/14)
+
+[弹幕服务器及搭配之透明弹幕客户端研究开题报告](http://blog.zsxsoft.com/post/13)
 
 ## 开发者
 zsx - http://www.zsxsoft.com / 博客 - http://blog.zsxsoft.com
