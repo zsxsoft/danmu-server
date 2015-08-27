@@ -3,15 +3,13 @@ danmu-server
 
 弹幕服务器。
 
-其新浪微博登录和自动封号功能为扩展组件，可直接通过删除``lib/ext/``下的对应目录停用。
-
 项目可直接在Windows和Linux上运行。Mac未测试。
 
 ## 功能特色
 - 房间功能，可用一个端口为多个不同的弹幕客户端提供服务
 - 搜索弹幕功能，可随时搜索弹幕
 - 黑名单功能，可封禁用户
-   - 在开启新浪微博登录的情况下封禁新浪微博
+   - 在开启新浪微博登录的情况下封禁新浪微博（扩展）
    - 在默认配置下根据Canvas指纹 + IP + User-Agent共同计算
 - 可设置关键词替换、关键词拦截
 - 记录用户的每一条弹幕（MySQL）
@@ -25,6 +23,73 @@ danmu-server
  3. 修改``config.js``，使其参数与环境相符。如果要用阿里云的OCS服务则需要在``config.js``里把``cache/type``调整为``aliyun``然后再``npm install aliyun-sdk``。
  4. 切换到``cmd``或``sh``，``cd``到程序所在目录执行``npm install``，安装程序依赖库。
  5. 现在，你可以直接``npm start``启动。
+
+## 网页接口
+
+### GET / 
+可以直接发布最简单的弹幕。
+
+### GET /advanced
+可以发布高级弹幕（需要密码）
+
+### GET /manage
+可以进行后台管理
+
+## 配置说明
+可以修改config.js来修改配置。以下标为const的配置运行时不可在后台管理修改。
+### rooms: Array
+#### const rooms[].display: string
+房间的显示名称
+#### const rooms[].table: string
+房间在数据库内存储使用的数据表（或类似概念）
+#### const rooms[].connectpassword: string
+客户端连接密码，参见[danmu-client](https://github.com/zsxsoft/danmu-client)
+#### const rooms[].managepassword: string
+后台管理密码，见网页接口的/manage
+#### const rooms[].advancedpassword: string
+高级弹幕密码，见网页接口的/advanced
+#### rooms[].blockusers: Array
+屏蔽用户列表，需要在/manage里配置
+#### rooms[].maxlength: int
+队列最大长度
+#### rooms[].openstate: bool
+房间开关
+#### rooms[].textlength: int
+弹幕最大长度
+### const database: Object
+#### type: string
+数据库类型，目前可选mysql或none
+#### server: string
+（MySQL）数据库主机
+#### username: string
+（MySQL）数据库用户名
+#### password: string
+（MySQL）数据库密码
+#### port: int
+（MySQL）数据库端口
+#### db: string
+（MySQL）数据库
+### websocket: Object
+#### interval: int
+弹幕推送到客户端时间间隔
+#### singlesize: int
+每次弹幕发送数量
+### const http: Object
+#### port: int
+服务器HTTP端口
+#### headers: Object
+每次请求携带的HTTP头
+#### sessionKey: string
+防Session冲突用的SessionKey，随意填写即可。
+### const cache: Object
+#### type: string
+
+#### host: string
+#### auth: string
+#### authUser: string
+#### authPassword: string
+### const ext: Object
+通过直接清空该对象内的内容，你可以直接停用新浪微博扩展和自动封号扩展。
 
 ## 搭配项目
 
