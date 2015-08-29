@@ -26,7 +26,7 @@ module.exports = {
 		"type": "mysql", // 数据库类型
 		"server": "127.0.0.1", // 数据库地址
 		"username": "root", // 数据库用户名
-		"password": "123456", // 数据库密码
+		"password": "", // 数据库密码
 		"port": "3306", // 数据库端口
 		"db": "danmu", // 数据库
 	},
@@ -44,7 +44,7 @@ module.exports = {
 	},
 	"cache": {
 		"type": "memcached", // 缓存类型，支持memcached和aliyun。后者需要npm install aliyun-sdk
-		"host" : "192.168.140.129:11211", // 缓存服务器地址，可用socket
+		"host" : "127.0.0.1:11211", // 缓存服务器地址，可用socket
 		"auth": false, // 是否打开身份验证
 		"authUser": "", // 身份验证账号
 		"authPassword": "" // 身份验证密码
@@ -53,12 +53,12 @@ module.exports = {
 		"log": false // 日志开关
 	}, 
 	"ext": {
-		"weibo": {
+		/*"weibo": {
 			"clientID": '', // App ID
 			"clientSecret": '', // App Secret
 			"callbackURL": 'http://test.zsxsoft.com:3000/auth/sina/callback', // 这里填写的是 网站地址/auth/sina/callback
 			"requireState": true // 是否打开CSRF防御
-		},
+		},*/
 		"autoban": {
 			"block": 3, // 被拦截超过一定数字自动封号
 
