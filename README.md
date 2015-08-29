@@ -83,11 +83,15 @@ danmu-server
 防Session冲突用的SessionKey，随意填写即可。
 ### const cache: Object
 #### type: string
-
+缓存类型，支持memcached和aliyun。后者需要npm install aliyun-sdk
 #### host: string
-#### auth: string
+缓存服务器地址，可用socket
+#### auth: bool
+是否打开身份验证
 #### authUser: string
+身份验证账号
 #### authPassword: string
+身份验证密码
 ### const ext: Object
 通过直接清空该对象内的内容，你可以直接停用新浪微博扩展和自动封号扩展。
 
