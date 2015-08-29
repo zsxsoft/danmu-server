@@ -1,6 +1,9 @@
 FROM iojs:3.2.0
 MAINTAINER zsx <zsx@zsxsoft.com> 
 
+## ----------------------------
+##       MariaDB Start
+## ----------------------------
 ## Add MariaDB PPK
 RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db && \
     echo 'deb http://mirrors.syringanetworks.net/mariadb/repo/10.1/ubuntu trusty main' >> /etc/apt/sources.list && \
@@ -15,6 +18,11 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server pwgen && \
 RUN sed -i -r 's/bind-address.*$/bind-address = 0.0.0.0/' /etc/mysql/my.cnf
 VOLUME  ["/etc/mysql", "/var/lib/mysql"]
 EXPOSE 3306
+## ----------------------------
+##       MariaDB End
+## ----------------------------
+## If comment the part of mariadb, then you should uncomment the following line.
+## RUN apt-get update
 
 ## Install memcached
 RUN apt-get install -y memcached

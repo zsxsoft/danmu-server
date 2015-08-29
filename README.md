@@ -18,11 +18,25 @@ danmu-server
 
 ## 部署方式
 
+### 直接安装
  1. 下载并安装[iojs](https://iojs.org/cn/)、[MariaDB](https://mariadb.org/)和[Memcached(Linux)](http://memcached.org/)。Windows用户请自行查找适合的Memcached版本，如不使用自动封号和新浪微博可不安装。另外，[Node](https://nodejs.org)和[MySQL](https://www.mysql.com/)也同样支持。
  2. 配置MariaDB，创建数据库等，不需要创建数据表。
  3. 修改``config.js``，使其参数与环境相符。如果要用阿里云的OCS服务则需要在``config.js``里把``cache/type``调整为``aliyun``然后再``npm install aliyun-sdk``。
  4. 切换到``cmd``或``sh``，``cd``到程序所在目录执行``npm install``，安装程序依赖库。
  5. 现在，你可以直接``npm start``启动。
+
+### Docker安装
+
+直接用``Docker``安装的话，镜像内是含``MariaDB``的。如果不需要，请根据``Dockerfile``内的提示手动删除。
+ 1. [安装Docker](http://yeasy.gitbooks.io/docker_practice/content/install/index.html)。
+ 2. ``config.js``调整配置。
+ 3. ``docker build -t="zsxsoft/danmu-server:" . && docker run -t -i -p 3000:3000 "zsxsoft/danmu-server"``
+
+## 注意事项
+现在``npm install``安装在部分系统下可能会因为``memcached``内的``hashring``组件编译失败导致安装失败。如遇安装失败，请在``package.json``内移除对``memcached``的依赖，并在``config.js``里移除``weibo``和``autoban``两个ext。至于为什么会失败，我也不知道。[Follow it here](https://github.com/3rd-Eden/memcached/issues/265).
+
+### DaoCloud安装
+在[DaoCloud](https://www.daocloud.io)下安装，如使用服务集成的MySQL的话，请根据``Dockerfile``内的提示手动删除``MariaDB``相关内容。不需要修改数据库信息，程序会自行检测。
 
 ## 网页接口
 
