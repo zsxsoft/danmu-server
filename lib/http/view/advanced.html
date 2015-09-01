@@ -93,6 +93,14 @@
 			</div>
 			<p>&nbsp;</p><div class="row">
 				<div class="form-group">
+					<label class="col-sm-4 control-label">弹幕高度</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" name="txt-height" value="30"/>
+					</div>
+				</div>
+			</div>
+			<p>&nbsp;</p><div class="row">
+				<div class="form-group">
 					<label class="col-sm-4 control-label">显示时间</label>
 					<div class="col-sm-8">
 						<input type="text" class="form-control" name="txt-time" value="240"/>
@@ -171,6 +179,7 @@ $(function() {
 			"lifeTime": $("[name='txt-time']").val(),
 			"style": $("[name='control-style']:checked").val(),
 			"password": $("[name='txt-password']").val(),
+			"height": $("[name='txt-height']").val(),
 			"hash": localStorage.danmuHash,
 			"room": room
 		}).done(function(data) {
