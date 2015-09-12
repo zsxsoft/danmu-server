@@ -22,7 +22,7 @@ module.exports = {
 			"textlength": 1000, // 弹幕最大长度
 			"image": {
 				"regex": /\[IMG WIDTH=(\d+)\](.+?)\[\/IMG\]/ig, // 图片弹幕
-				"lifetime": 1000 // 每条图片展示时间
+				"lifetime": 1000 // 每个图片给每条弹幕增加的时间
 			}
 		}
 	},
