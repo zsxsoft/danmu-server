@@ -106,6 +106,12 @@ danmu-server
 ### const ext: Object
 通过直接清空该对象内的内容，你可以直接停用新浪微博扩展和自动封号扩展。
 
+
+## 常见问题
+### 数据库相关
+``{ [Error: Connection lost: The server closed the connection.] fatal: true, code: 'PROTOCOL_CONNECTION_LOST' }``
+请把MySQL的``wait_timeout``设置得大一些。
+
 ## 搭配项目
 
 - [danmu-client](https://github.com/zsxsoft/danmu-client)
