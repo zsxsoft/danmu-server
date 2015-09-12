@@ -19,7 +19,7 @@ module.exports = {
 			],
 			"maxlength": 100, // 队列最大长度
 			"openstate": true, // 房间开关
-			"textlength": 20 // 弹幕最大长度
+			"textlength": 1000 // 弹幕最大长度
 		}
 	},
 	"database": {
@@ -29,6 +29,8 @@ module.exports = {
 		"password": "", // 数据库密码
 		"port": "3306", // 数据库端口
 		"db": "danmu", // 数据库
+		"retry": 10, // 24小时允许断线重连最大次数，超过则自动退出程序。24小时以第一次断线时间计。
+		"timeout": 1000 // 数据库重连延时及Ping
 	},
 	"websocket": {
 		"interval": 10, // 弹幕发送间隔
@@ -49,9 +51,6 @@ module.exports = {
 		"authUser": "", // 身份验证账号
 		"authPassword": "" // 身份验证密码
 	},
-	"env": {
-		"log": false // 日志开关
-	}, 
 	"ext": {
 		/*"weibo": {
 			"clientID": '', // App ID
