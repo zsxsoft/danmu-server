@@ -1,4 +1,4 @@
-FROM iojs:3.2.0
+FROM node:4.0.0
 MAINTAINER zsx <zsx@zsxsoft.com> 
 
 ## ----------------------------
