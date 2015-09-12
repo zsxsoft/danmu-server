@@ -13,7 +13,7 @@
     "errorhandler": "^1.4.2",
     "express": "^4.13.3",
     "express-session": "^1.11.3",
-    "memcached": "^2.1.0",
+    "memcached": "^2.2.0",
     "morgan": "^1.6.1",
     "mysql": "^2.9.0",
     "passport": "^0.2.2",

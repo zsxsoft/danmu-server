@@ -32,9 +32,6 @@ danmu-server
  2. ``config.js``调整配置。
  3. ``docker build -t="zsxsoft/danmu-server:" . && docker run -t -i -p 3000:3000 "zsxsoft/danmu-server"``
 
-## 注意事项
-现在``npm install``安装在部分系统下可能会因为``memcached``内的``hashring``组件编译失败导致安装失败。如遇安装失败，请在``package.json``内移除对``memcached``的依赖，并在``config.js``里移除``weibo``和``autoban``两个ext。至于为什么会失败，我也不知道。[Follow it here](https://github.com/3rd-Eden/memcached/issues/265).
-
 ### DaoCloud安装
 在[DaoCloud](https://www.daocloud.io)下安装，如使用服务集成的MySQL的话，请根据``Dockerfile``内的提示手动删除``MariaDB``相关内容。不需要修改数据库信息，程序会自行检测。
 
