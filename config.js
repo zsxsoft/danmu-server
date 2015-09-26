@@ -34,7 +34,8 @@ module.exports = {
 		"port": "3306", // 数据库端口
 		"db": "danmu", // 数据库
 		"retry": 10, // 24小时允许断线重连最大次数，超过则自动退出程序。24小时以第一次断线时间计。
-		"timeout": 1000 // 数据库重连延时及Ping
+		"timeout": 1000, // 数据库重连延时及Ping
+		"savedir": "./", // （仅限CSV）指定文件保存位置
 	},
 	"websocket": {
 		"interval": 10, // 弹幕发送间隔

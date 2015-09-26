@@ -69,7 +69,7 @@ danmu-server
 弹幕最大长度
 ### const database: Object
 #### type: string
-数据库类型，目前可选mysql或none
+数据库类型，目前可选mysql、csv和none
 #### server: string
 （MySQL）数据库主机
 #### username: string
@@ -80,6 +80,8 @@ danmu-server
 （MySQL）数据库端口
 #### db: string
 （MySQL）数据库
+#### savedir: string
+（CSV）文件保存位置
 ### websocket: Object
 #### interval: int
 弹幕推送到客户端时间间隔
