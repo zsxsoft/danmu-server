@@ -7,7 +7,6 @@ module.exports = function(grunt) {
 		pkg: packageJson,
 		jshint: {
 			options: {
-				"loopfunc": true
 			},
 			src: ['./app.js', './lib/*'],
 		},
