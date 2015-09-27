@@ -27,9 +27,9 @@ module.exports = {
 				"send": true, // 弹幕开关；关闭后无论普通用户还是高级权限都完全禁止弹幕。
 				"style": false, // 弹幕样式开关
 				"color": false, // 颜色开关
-				"txtstyle": false, // CSS开关
+				"textStyle": false, // CSS开关
 				"height": false, // 高度开关
-				"time": false, // 显示时间开关
+				"lifeTime": false, // 显示时间开关
 			}
 		}
 	},

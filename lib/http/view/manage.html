@@ -94,7 +94,7 @@
                                 <div class="form-group">
                                     <label for="permissionSend" class="col-sm-2 control-label">弹幕接收开关</label>
                                     <div class="col-sm-10">
-                                    <button type="button" class="btn" ng-class="$makeClass('send')" id="permissionSend" ng-click="$setState('send')">当前状态：{{$getStateText('send')}}</button> <small>关闭后不再接收任何新弹幕</small>
+                                        <button type="button" class="btn" ng-class="$makeClass('send')" id="permissionSend" ng-click="$setState('send')">当前状态：{{$getStateText('send')}}</button> <small>关闭后不再接收任何新弹幕</small>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -110,15 +110,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="permissionTxtstyle" class="col-sm-2 control-label">文字样式开关</label>
+                                    <label for="permissionTextStyle" class="col-sm-2 control-label">文字样式开关</label>
                                     <div class="col-sm-10">
-                                        <button type="button" class="btn" ng-class="$makeClass('txtstyle')" id="permissionTxtstyle" ng-click="$setState('txtstyle')">当前状态：{{$getStateText('txtstyle')}}</button>
+                                        <button type="button" class="btn" ng-class="$makeClass('textStyle')" id="permissionTextStyle" ng-click="$setState('textStyle')">当前状态：{{$getStateText('textStyle')}}</button>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="permissionHeight" class="col-sm-2 control-label">高度设置开关</label>
                                     <div class="col-sm-10">
                                         <button type="button" class="btn" ng-class="$makeClass('height')" id="permissionHeight" ng-click="$setState('height')">当前状态：{{$getStateText('height')}}</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="permissionLifeTime" class="col-sm-2 control-label">时间设置开关</label>
+                                    <div class="col-sm-10">
+                                        <button type="button" class="btn" ng-class="$makeClass('lifeTime')" id="permissionLifeTime" ng-click="$setState('lifeTime')">当前状态：{{$getStateText('lifeTime')}}</button>
                                     </div>
                                 </div>
                                 <div class="row">
