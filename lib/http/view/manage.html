@@ -76,8 +76,8 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="添加用户" ng-model="block.textUser">
                                     <span class="input-group-btn">
-							<button class="btn btn-success" type="submit">添加</button>
-						</span>
+                                    <button class="btn btn-success" type="submit">添加</button>
+                                    </span>
                                 </div>
                             </form>
                             <div class="row">
@@ -86,6 +86,45 @@
                                 </p>
                                 <button type="button" class="btn btn-primary btn-sm" ng-repeat="item in block.result track by $index" style="margin-right: 5px" ng-click="block.doRemove(item)" ng-value="item">{{item}}</button>
                             </div>
+                        </div>
+                    </accordion-group>
+                    <accordion-group heading="权限设置" is-open="accordion.openPermissions">
+                        <div ng-controller="PermissionCtrl" class="container">
+                            <form class="form-horizontal" ng-submit="$submitPermissions()">
+                                <div class="form-group">
+                                    <label for="permissionSend" class="col-sm-2 control-label">弹幕接收开关</label>
+                                    <div class="col-sm-10">
+                                    <button type="button" class="btn" ng-class="$makeClass('send')" id="permissionSend" ng-click="$setState('send')">当前状态：{{$getStateText('send')}}</button> <small>关闭后不再接收任何新弹幕</small>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="permissionStyle" class="col-sm-2 control-label">弹幕样式开关</label>
+                                    <div class="col-sm-10">
+                                        <button type="button" class="btn" ng-class="$makeClass('style')" id="permissionStyle" ng-click="$setState('style')">当前状态：{{$getStateText('style')}}</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="permissionColor" class="col-sm-2 control-label">颜色设置开关</label>
+                                    <div class="col-sm-10">
+                                        <button type="button" class="btn" ng-class="$makeClass('color')" id="permissionColor" ng-click="$setState('color')">当前状态：{{$getStateText('color')}}</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="permissionTxtstyle" class="col-sm-2 control-label">文字样式开关</label>
+                                    <div class="col-sm-10">
+                                        <button type="button" class="btn" ng-class="$makeClass('txtstyle')" id="permissionTxtstyle" ng-click="$setState('txtstyle')">当前状态：{{$getStateText('txtstyle')}}</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="permissionHeight" class="col-sm-2 control-label">高度设置开关</label>
+                                    <div class="col-sm-10">
+                                        <button type="button" class="btn" ng-class="$makeClass('height')" id="permissionHeight" ng-click="$setState('height')">当前状态：{{$getStateText('height')}}</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <button class="col-sm-offset-5 btn btn-success" type="submit">更新权限</button>
+                                </div>
+                            </form>
                         </div>
                     </accordion-group>
                     <accordion-group heading="参数设置" is-open="accordion.openConfig">
