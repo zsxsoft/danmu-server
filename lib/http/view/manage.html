@@ -1,119 +1,143 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="danmu.manage" ng-controller="MainCtrl">
+
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap-theme.min.css" rel="stylesheet">
-	<link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/manage.css" rel="stylesheet">
-	<script src="http://cdn.staticfile.org/angular.js/1.3.0-beta.9/angular.min.js"></script>
-	<script src="http://cdn.staticfile.org/angular-ui-bootstrap/0.11.2/ui-bootstrap-tpls.min.js"></script>
-	<title>系统管理</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/manage.css" rel="stylesheet">
+    <script src="http://cdn.staticfile.org/angular.js/1.3.0-beta.9/angular.min.js"></script>
+    <script src="http://cdn.staticfile.org/angular-ui-bootstrap/0.11.2/ui-bootstrap-tpls.min.js"></script>
+    <title>系统管理</title>
 </head>
+
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container-fluid"><div class="navbar-header"><a class="navbar-brand" href="#">系统管理</a></div></div>
-	</nav>
-	<div class="container-fluid">
-		<div class="row">
-			<alert type="danger" ng-show="haveError">错误{{err.code}}：{{err.desc}}；建议刷新页面。</alert>
-			<div class="col-sm-12 col-md-12 main">
-				<accordion close-others="accordion.closeOther">
-					<accordion-group heading="管理信息" is-open="accordion.openInfo" is-disabled="accordion.disableInfo">
-					<div class="container">
-					<alert type="danger" ng-show="!isLogin">务必先填入房间信息再进行管理。</alert>
-					<alert type="success" ng-show="isLogin">你选择了{{room}}房间</alert>
-					<div class="list-group" ng-show="!isLogin">
-					<a href="#" class="list-group-item" ng-class="{active: room == roomS.id}" ng-repeat="roomS in roomList" ng-click="initRoom(roomS.id)">{{roomS.display}} ({{roomS.id}})</a>
-					</div>
-					<form ng-submit="enterRoom(password)" ng-show="!isLogin">
-					<div class="input-group">
-						<input type="password" class="form-control" placeholder="房间密码" ng-model="password">						
-						<span class="input-group-btn">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header"><a class="navbar-brand" href="#">系统管理</a></div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <alert type="danger" ng-show="haveError">错误{{err.code}}：{{err.desc}}；建议刷新页面。</alert>
+            <div class="col-sm-12 col-md-12 main">
+                <accordion close-others="accordion.closeOther">
+                    <accordion-group heading="管理信息" is-open="accordion.openInfo" is-disabled="accordion.disableInfo">
+                        <div class="container">
+                            <alert type="danger" ng-show="!isLogin">务必先填入房间信息再进行管理。</alert>
+                            <alert type="success" ng-show="isLogin">你选择了{{room}}房间</alert>
+                            <div class="list-group" ng-show="!isLogin">
+                                <a href="#" class="list-group-item" ng-class="{active: room == roomS.id}" ng-repeat="roomS in roomList" ng-click="initRoom(roomS.id)">{{roomS.display}} ({{roomS.id}})</a>
+                            </div>
+                            <form ng-submit="enterRoom(password)" ng-show="!isLogin">
+                                <div class="input-group">
+                                    <input type="password" class="form-control" placeholder="房间密码" ng-model="password">
+                                    <span class="input-group-btn">
 							<button class="btn btn-success" type="submit">确认</button>
 						</span>
-					</div>
-					</form>
-					</div>
-					</accordion-group>
-					<accordion-group heading="弹幕搜索" is-open="accordion.openDanmu">
-					<div ng-controller="DanmuCtrl" class="container">
-					<form ng-submit="danmu.doSearch()">
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="搜索弹幕" ng-model="danmu.searchKey">						
-						<span class="input-group-btn">
+                                </div>
+                            </form>
+                        </div>
+                    </accordion-group>
+                    <accordion-group heading="弹幕搜索" is-open="accordion.openDanmu">
+                        <div ng-controller="DanmuCtrl" class="container">
+                            <form ng-submit="danmu.doSearch()">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="搜索弹幕" ng-model="danmu.searchKey">
+                                    <span class="input-group-btn">
 							<button class="btn btn-success" type="submit">搜索</button>
 						</span>
-					</div>
-					</form>
-					<div class="row"> 
-						<p><br/></p>
-					<table class="table table-hover">
-						<tr><th>ID</th><th>用户</th><th>弹幕</th></tr>
-						<tr ng-repeat="item in danmu.result"><td>{{item.id}}</td><td>{{item.user}}</td><td>{{item.text}}</td></tr>
-					</table>
-					</div>
-					
-					</div>
-					</accordion-group>
-					<accordion-group heading="黑名单管理" is-open="accordion.openBlock">
-					<div ng-controller="BlockCtrl" class="container">
-					<form ng-submit="block.doAdd()">
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="添加用户" ng-model="block.textUser">						
-						<span class="input-group-btn">
+                                </div>
+                            </form>
+                            <div class="row">
+                                <p>
+                                    <br/>
+                                </p>
+                                <table class="table table-hover">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>用户</th>
+                                        <th>弹幕</th>
+                                    </tr>
+                                    <tr ng-repeat="item in danmu.result">
+                                        <td>{{item.id}}</td>
+                                        <td>{{item.user}}</td>
+                                        <td>{{item.text}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </accordion-group>
+                    <accordion-group heading="黑名单管理" is-open="accordion.openBlock">
+                        <div ng-controller="BlockCtrl" class="container">
+                            <form ng-submit="block.doAdd()">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="添加用户" ng-model="block.textUser">
+                                    <span class="input-group-btn">
 							<button class="btn btn-success" type="submit">添加</button>
 						</span>
-					</div>
-					</form>
-					<div class="row"> 
-						<p><br/></p>
-						<button type="button" class="btn btn-primary btn-sm" ng-repeat="item in block.result track by $index" style="margin-right: 5px" ng-click="block.doRemove(item)" ng-value="item">{{item}}</button>
-					</div>
-					</div>
-					</accordion-group>
-					<accordion-group heading="参数设置" is-open="accordion.openConfig">
-					<div ng-controller="ConfigCtrl" class="container">
-					<form class="form-horizontal" ng-submit="config.submitConfig()">
-						<div class="form-group">
-							<label for="configReplaceKeyword" class="col-sm-2 control-label">替换关键词</label>
-							<div class="col-sm-10"><input type="text" class="form-control" id="configReplaceKeyword" placeholder="" ng-model="config.realConfig.replaceKeyword"></div>
-						</div>
-						<div class="form-group">
-							<label for="configBlockKeyword" class="col-sm-2 control-label">拦截关键词</label>
-							<div class="col-sm-10"><input type="text" class="form-control" id="configBlockKeyword" placeholder="" ng-model="config.realConfig.blockKeyword"></div>
-						</div>
-						<div class="form-group">
-							<label for="configIgnoreKeyword" class="col-sm-2 control-label">判断拦截时忽略关键词</label>
-							<div class="col-sm-10"><input type="text" class="form-control" id="configIgnoreKeyword" placeholder="" ng-model="config.realConfig.ignoreKeyword"></div>
-						</div>
-						<div class="form-group">
-							<label for="configSocketInterval" class="col-sm-2 control-label">弹幕向客户端发送间隔</label>
-							<div class="col-sm-10"><input type="number" class="form-control" id="configSocketInterval" placeholder="" ng-model="config.realConfig.socketinterval"></div>
-						</div>
-						<div class="form-group">
-							<label for="configSocketSingle" class="col-sm-2 control-label">每次弹幕发送数量</label>
-							<div class="col-sm-10"><input type="number" class="form-control" id="configSocketSingle" placeholder="" ng-model="config.realConfig.socketsingle"></div>
-						</div>
-						<div class="form-group">
-							<label for="configRoomLength" class="col-sm-2 control-label">弹幕堆积队列最大长度</label>
-							<div class="col-sm-10"><input type="number" class="form-control" id="configRoomLength" placeholder="" ng-model="config.realConfig.maxlength"></div>
-						</div>
-						<div class="form-group">
-							<label for="configOpenState" class="col-sm-2 control-label">弹幕接收开关</label>
-							<div class="col-sm-10"><button type="button" class="btn" ng-class="{active: config.realConfig.openstate, 'btn-danger': !config.realConfig.openstate, 'btn-success': config.realConfig.openstate}" id="configOpenState" ng-click="config.setState()">当前状态：{{config.text.openstate}}</button></div>
-						</div>
-						<div class="row">
-						<button class="col-sm-offset-5 btn btn-success" type="submit">更新配置</button>
-						</div>
-					</form>
-					</div>
-					</accordion-group>
-				</accordion>
-			</div>
-		</div>
-	</div>
-	<script src="/manage_app.js"></script>
+                                </div>
+                            </form>
+                            <div class="row">
+                                <p>
+                                    <br/>
+                                </p>
+                                <button type="button" class="btn btn-primary btn-sm" ng-repeat="item in block.result track by $index" style="margin-right: 5px" ng-click="block.doRemove(item)" ng-value="item">{{item}}</button>
+                            </div>
+                        </div>
+                    </accordion-group>
+                    <accordion-group heading="参数设置" is-open="accordion.openConfig">
+                        <div ng-controller="ConfigCtrl" class="container">
+                            <form class="form-horizontal" ng-submit="config.submitConfig()">
+                                <div class="form-group">
+                                    <label for="configReplaceKeyword" class="col-sm-2 control-label">替换关键词</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="configReplaceKeyword" placeholder="" ng-model="config.realConfig.replaceKeyword">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="configBlockKeyword" class="col-sm-2 control-label">拦截关键词</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="configBlockKeyword" placeholder="" ng-model="config.realConfig.blockKeyword">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="configIgnoreKeyword" class="col-sm-2 control-label">判断拦截时忽略关键词</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="configIgnoreKeyword" placeholder="" ng-model="config.realConfig.ignoreKeyword">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="configSocketInterval" class="col-sm-2 control-label">弹幕向客户端发送间隔</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" id="configSocketInterval" placeholder="" ng-model="config.realConfig.socketinterval">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="configSocketSingle" class="col-sm-2 control-label">每次弹幕发送数量</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" id="configSocketSingle" placeholder="" ng-model="config.realConfig.socketsingle">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="configRoomLength" class="col-sm-2 control-label">弹幕堆积队列最大长度</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" id="configRoomLength" placeholder="" ng-model="config.realConfig.maxlength">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <button class="col-sm-offset-5 btn btn-success" type="submit">更新配置</button>
+                                </div>
+                            </form>
+                        </div>
+                    </accordion-group>
+                </accordion>
+            </div>
+        </div>
+    </div>
+    <script src="/manage_app.js"></script>
 </body>
+
 </html>
