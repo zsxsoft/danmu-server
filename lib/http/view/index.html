@@ -1,125 +1,246 @@
 <!DOCTYPE html>
 <!--懒得写CSS和一堆JS了，麻烦~-->
 <html lang="zh-cn">
+
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>发送弹幕</title>
-	<link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap-theme.min.css" rel="stylesheet">
-	<link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-	<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-	<style type="text/css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>发送弹幕 - 高级</title>
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <style type="text/css">
     body {
-      padding-top: 50px;
+        padding-top: 50px;
     }
+    
     .starter-template {
-      padding: 40px 15px;
-      text-align: center;
+        padding: 40px 15px;
+        text-align: center;
     }
-  </style>
-
+    
+    .danmu-advanced {
+        display: <%=advanced ? "block" : "none"%>;
+    }
+    </style>
 </head>
+
 <body>
-	<div class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">房间选择</h4>
-				</div>
-				<div class="modal-body"><div class="list-group" id="room-choose"><%for(var item in config.rooms) {%>
-					<a class="list-group-item" data-value="<%=item%>" href="javascript:;"><%=config.rooms[item].display%></a>
-				<%}%></div></div>
-			</div>
-		</div>
-	</div>
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">弹幕</a>
-			</div>
-			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right"></ul>
-			</div>
-		</div>
-	</nav>
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">房间选择</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="list-group" id="room-choose">
+                        <%for(var item in config.rooms) {%>
+                            <a class="list-group-item" data-value="<%=item%>" href="javascript:;">
+                                <%=config.rooms[item].display%>
+                            </a>
+                            <%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">弹幕</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right"></ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="starter-template">
+            <div class="row">
+                <p class="text-success">发送你的弹幕吧！</p>
+            </div>
+            <div class="row">
+                <textarea class="form-control" row="4" id="txt-barrage"></textarea>
+            </div>
+            <p>&nbsp;</p>
+            <div class="row danmu-advanced danmu-style">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">特效</label>
+                    <div class="col-sm-8">
+                        <label class="radio-inline">
+                            <input type="radio" name="control-style" value="scroll">滚动</label>
+                        <label class="radio-inline">
+                            <input type="radio" name="control-style" value="reversescroll">反向滚动</label>
+                        <label class="radio-inline">
+                            <input type="radio" name="control-style" value="staticup">固定最上</label>
+                        <label class="radio-inline">
+                            <input type="radio" name="control-style" value="staticdown">固定最下</label>
+                    </div>
+                </div>
+                <p>&nbsp;</p>
+            </div>
+            <div class="row danmu-advanced danmu-color">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">颜色(16进制)</label>
+                    <div class="col-sm-8">
+                        <input type="color" class="form-control" name="txt-color" value="#ffffff" />
+                    </div>
+                </div>
+                <p>&nbsp;</p>
+            </div>
+            <div class="row danmu-advanced danmu-txtstyle">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">文字CSS</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="txt-style" value="normal bold 3em 微软雅黑" />
+                    </div>
+                </div>
+                <p>&nbsp;</p>
+            </div>
+            <div class="row danmu-advanced danmu-height">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">弹幕高度</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="txt-height" value="30" />
+                    </div>
+                </div>
+                <p>&nbsp;</p>
+            </div>
+            <div class="row danmu-advanced danmu-time">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">显示时间</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="txt-time" value="240" />
+                    </div>
+                </div>
+                <p>&nbsp;</p>
+            </div>
+            <div class="row danmu-advanced">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">高级弹幕密码</label>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control" name="txt-password" value="" />
+                    </div>
+                </div>
+                <p>&nbsp;</p>
+            </div>
+            <div class="row">
+                <button class="form-control btn-success" id="btn-send">喷射</button>
+            </div>
+            <div class="row">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="saveContent">保留发送内容</label>
+                </div>
+            </div>
+            <div class="row">
+                <p>
+                    <br/>
+                </p>
+                <p>Powered by zsx</p>
+                <p>若弹幕无法发送，则请刷新。</p>
+                <p>在弹幕上表白、使用不文明语言有被封号的可能。</p>
+            </div>
+        </div>
+    </div>
+    <script>
+    <%
+    var ret = {};
+    for (var item in config.rooms) {
+    	ret[item] = config.rooms[item].permissions;
+    }
+    %>
+    $(function() {
+        var roomsConfig = <%-JSON.stringify(ret);%>;
 
-	<div class="container">
-		<div class="starter-template">
-			<div class="row">
-				<p class="text-success">发送你的弹幕吧！</p>
-			</div>
-			<div class="row">
-				<textarea class="form-control" row="4" id="txt-barrage"></textarea>
-			</div>
-			<p>&nbsp;</p>
-			<div class="row">
-				<button class="form-control btn-success" id="btn-send">喷射</button>
-			</div>
-			<div class="row">
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" id="saveContent" disabled>保留发送内容</label>
-				</div>
-			</div>
-			<div class="row">
-				<p>
-					<br/>
-				</p>
-				<p>Powered by zsx</p>
-				<p>若弹幕无法发送，则请刷新。</p>
-				<p>在弹幕上表白、使用不文明语言有被封号的可能。</p>
-			</div>
-		</div>
-	</div>
-	<script>
-$(function() {
+        calculateHash();
+        initializeRoomSelector();
+        bindSendButton();
 
-	var b2h = function(s) {
-		var i, l, n, o = '';
-		s += '';
-		for (i = 0, l = s.length; i < l; i++) {
-			n = s.charCodeAt(i).toString(16);
-			o += n.length < 2 ? '0' + n : n;
-		}
-		return o;
-	}
+        function calculateHash() {
+            function b2h(s) {
+                var i, l, n, o = '';
+                s += '';
+                for (i = 0, l = s.length; i < l; i++) {
+                    n = s.charCodeAt(i).toString(16);
+                    o += n.length < 2 ? '0' + n : n;
+                }
+                return o;
+            }
 
-	if (localStorage.getItem("danmuHash") === null) {
-		// HTML5 帆布指纹（Canvas fingerprinting）
-		var canvas = document.createElement('canvas');
-		var ctx = canvas.getContext('2d');
-		ctx.textBaseline = "top";
-		ctx.font = "14px '微软雅黑'";
-		ctx.fillStyle = "#0281cd";
-		ctx.fillText("zsx's Danmu Server\n\n弹幕验证帆布指纹", 5, 5);
-		ctx.fillText("http://www.zsxsoft.com/", 5, 30);
-		var b64 = b2h(atob(canvas.toDataURL().replace("data:image/png;base64,", "")).slice(-32, -24));
-		localStorage.danmuHash = b64;
-	}
-	$(".modal").modal({
-		backdrop: false
-	});
+            var danmuHash = null;
+            // In some modes, localStorage cannot be used.
+            try {
+                danmuHash = localStorage.getItem("danmuHash");
+            } catch (e) {
+                // eat it
+            }
 
-	var room = "default";
-	$("#room-choose").on("click", ".list-group-item", function(e) {
-		room = $(this).data("value");
-		$(".modal").modal("hide");
-	});
-	$("#btn-send").click(function() {
-		$.post("/post", {
-			"text": $("#txt-barrage").val(),
-			"hash": localStorage.danmuHash,
-			"room": room
-		}).done(function(data) {
-			alert(data);
-			if (!$("#saveContent")[0].checked) $("#txt-barrage").val("").focus();
-			$("#btn-send").removeAttr('disabled');
-		});
-		$("#btn-send").attr("disabled", "disabled");
-	});
-});
+            if (danmuHash === null) {
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext('2d');
+                ctx.textBaseline = "top";
+                ctx.font = "14px '微软雅黑'";
+                ctx.fillStyle = "#0281cd";
+                ctx.fillText("zsx's Danmu Server\n\n弹幕验证帆布指纹", 5, 5);
+                ctx.fillText("http://www.zsxsoft.com/", 5, 30);
+                var b64 = b2h(atob(canvas.toDataURL().replace("data:image/png;base64,", "")).slice(-32, -24));
+                try {
+                    localStorage.danmuHash = b64;
+                } catch (e) {
+                    // Still do nothing
+                }
+            }
+        }
 
-  </script></body>
+        function initializeRoomSelector() {
+            $(".modal").modal({
+                backdrop: false
+            });
+
+            var room = "default";
+            $("#room-choose").on("click", ".list-group-item", function(e) {
+                room = $(this).data("value");
+                $(".modal").modal("hide");
+
+                var permissions = roomsConfig[room];
+                if (!permissions) return;
+                for (var item in permissions) {
+                	if (permissions[item]) {
+                		$(".danmu-" + item).show();
+                	}
+                }
+            });
+
+        }
+
+        function bindSendButton() {
+
+
+            $("#btn-send").click(function() {
+                $.post("/post", {
+                    "type": "advanced",
+                    "text": $("#txt-barrage").val(),
+                    "color": $("[name='txt-color']").val(),
+                    "textStyle": $("[name='txt-style']").val(),
+                    "lifeTime": $("[name='txt-time']").val(),
+                    "style": $("[name='control-style']:checked").val(),
+                    "password": $("[name='txt-password']").val(),
+                    "height": $("[name='txt-height']").val(),
+                    "hash": localStorage.danmuHash,
+                    "room": room
+                }).done(function(data) {
+                    alert(data);
+                    if (!$("#saveContent")[0].checked) $("#txt-barrage").val("").focus();
+                    $("#btn-send").removeAttr('disabled');
+                });
+                $("#btn-send").attr("disabled", "disabled");
+            });
+        }
+    });
+    </script>
+</body>
+
 </html>

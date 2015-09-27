@@ -18,11 +18,18 @@ module.exports = {
 				"test"
 			],
 			"maxlength": 100, // 队列最大长度
-			"openstate": true, // 房间开关
 			"textlength": 1000, // 弹幕最大长度
 			"image": {
 				"regex": /\[IMG WIDTH=(\d+)\](.+?)\[\/IMG\]/ig, // 图片弹幕
 				"lifetime": 1000 // 每个图片给每条弹幕增加的时间
+			}, 
+			"permissions": { // 普通用户允许的弹幕权限
+				"send": true, // 弹幕开关；关闭后无论普通用户还是高级权限都完全禁止弹幕。
+				"style": false, // 弹幕样式开关
+				"color": false, // 颜色开关
+				"txtstyle": false, // CSS开关
+				"height": false, // 高度开关
+				"time": false, // 显示时间开关
 			}
 		}
 	},
