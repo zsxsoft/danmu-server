@@ -113,8 +113,8 @@ danmu-server
 	* "database": { // 数据库
 		* "type": "数据库类型（mysql / mongo / csv / none）",
 		* "server": " 数据库地址（mysql / mongo）",
-		* "username": "数据库用户名（mysql）",
-		* "password": "数据库密码（mysql）",
+		* "username": "数据库用户名（mysql / mongo）",
+		* "password": "数据库密码（mysql / mongo）",
 		* "port": "数据库端口（mysql / mongo）",
 		* "db": "数据库（mysql / mongo）", 
 		* "retry": 24小时允许断线重连最大次数，超过则自动退出程序。24小时以第一次断线时间计。（mysql）,

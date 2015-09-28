@@ -65,11 +65,11 @@ module.exports = {
 		}
 	},
 	"database": {
-		"type": "mongo", // 数据库类型（mysql / mongo / csv / none）
+		"type": "mysql", // 数据库类型（mysql / mongo / csv / none）
 		"server": "127.0.0.1", // 数据库地址（mysql / mongo）
-		"username": "root", // 数据库用户名（mysql）
-		"password": "123456", // 数据库密码（mysql）
-		"port": "27017", // 数据库端口（mysql / mongo）
+		"username": "root", // 数据库用户名（mysql / mongo）
+		"password": "", // 数据库密码（mysql / mongo）
+		"port": "3306", // 数据库端口（mysql / mongo）
 		"db": "danmu", // 数据库（mysql / mongo）
 		"retry": 10, // 24小时允许断线重连最大次数，超过则自动退出程序。24小时以第一次断线时间计。（mysql）
 		"timeout": 1000, // 数据库重连延时及Ping（mysql）
