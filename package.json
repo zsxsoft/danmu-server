@@ -1,6 +1,6 @@
 {
   "name": "danmu-server",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "license": "MIT",
   "scripts": {
     "start": "node app.js"

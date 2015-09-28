@@ -23,16 +23,32 @@ danmu-server
 ## 部署方式
 
 ### 检查环境
- 1. 检查[nodejs](https://nodejs.org/)的安装状态。强烈推荐使用最新版本Nodejs（截至写文档时，最新版本为``4.1.1``）。支持``node 0.10``以上版本和``iojs 1.0``以上版本。
- 2. 需要MySQL数据库功能的话，检查[MariaDB](https://mariadb.org/)或[MySQL](https://www.mysql.com/)的安装状态。支持``5.0+``。如果使用``csv``或不开启，可无视这步。
- 3. 需要缓存功能的话，检查[Memcached(Linux)](http://memcached.org/)的安装状态。``Windows``用户请自行查找适合的``Memcached``版本。如果要用[阿里云开放缓存服务OCS](http://www.aliyun.com/product/ocs/)，或不使用新浪微博与自动封禁功能，可无视这步。
+
+#### Nodejs
+ 必须安装[Nodejs](https://nodejs.org/)。支持``node 0.10``以上版本和``iojs 1.0``以上版本。
+
+ 强烈推荐使用最新版本Nodejs（截至写文档时，最新版本为``4.1.1``）。
+
+#### 数据库
+ 如使用``csv``，可无视此节。
+
+ 默认使用``MySQL``数据库。如需使用，需检查[MariaDB](https://mariadb.org/)或[MySQL](https://www.mysql.com/)的安装状态。支持``5.0+``。安装完成后，请创建相应的数据库。
+
+ 如使用``MongoDB``数据库，请检查[MongoDB](https://www.mongodb.org/)的安装状态。然后需要在安装完成后执行：``npm install mongodb``。
+
+#### 缓存
+
+ 如不使用新浪微博与自动封禁功能，可无视此节。
+
+ 默认使用``memcached``。如需使用，请检查[Memcached(Linux)](http://memcached.org/)的安装状态。``Windows``用户请自行查找适合的``Memcached``版本。
+
+ 如果要用[阿里云开放缓存服务OCS](http://www.aliyun.com/product/ocs/)，需要在安装完成后执行：``npm install aliyun-sdk``。
 
 ### 直接安装
  1. 配置MariaDB，创建数据库等，不需要创建数据表。
  2. 修改``config.js``，使其参数与环境相符。
  3. 切换到命令行或终端，``cd``到程序所在目录执行``npm install``，安装程序依赖库。
- 4. 如果要用[阿里云开放缓存服务OCS](http://www.aliyun.com/product/ocs/)，你必须再``npm install aliyun-sdk``。如果不使用，请无视这步。
- 5. 现在，你可以直接``npm start``启动。
+ 4. 现在，你可以直接``npm start``启动。
 
 ### Docker安装
 
@@ -46,7 +62,7 @@ danmu-server
 
 ## 网页接口
 
-### GET / 
+### GET /
 可以直接发布最简单的弹幕。
 
 ### GET /advanced
@@ -56,67 +72,76 @@ danmu-server
 可以进行后台管理
 
 ## 配置说明
-可以修改config.js来修改配置。以下标为const的配置运行时不可在后台管理修改。
-### rooms: Array
-#### const rooms[].display: string
-房间的显示名称
-#### const rooms[].table: string
-房间在数据库内存储使用的数据表（或类似概念）
-#### const rooms[].connectpassword: string
-客户端连接密码，参见[danmu-client](https://github.com/zsxsoft/danmu-client)
-#### const rooms[].managepassword: string
-后台管理密码，见网页接口的/manage
-#### const rooms[].advancedpassword: string
-高级弹幕密码，见网页接口的/advanced
-#### rooms[].blockusers: Array
-屏蔽用户列表，需要在/manage里配置
-#### rooms[].maxlength: int
-队列最大长度
-#### rooms[].openstate: bool
-房间开关
-#### rooms[].textlength: int
-弹幕最大长度
-### const database: Object
-#### type: string
-数据库类型，目前可选mysql、csv和none
-#### server: string
-（MySQL）数据库主机
-#### username: string
-（MySQL）数据库用户名
-#### password: string
-（MySQL）数据库密码
-#### port: int
-（MySQL）数据库端口
-#### db: string
-（MySQL）数据库
-#### savedir: string
-（CSV）文件保存位置
-### websocket: Object
-#### interval: int
-弹幕推送到客户端时间间隔
-#### singlesize: int
-每次弹幕发送数量
-### const http: Object
-#### port: int
-服务器HTTP端口
-#### headers: Object
-每次请求携带的HTTP头
-#### sessionKey: string
-防Session冲突用的SessionKey，随意填写即可。
-### const cache: Object
-#### type: string
-缓存类型，支持memcached和aliyun。后者需要npm install aliyun-sdk
-#### host: string
-缓存服务器地址，可用socket
-#### auth: bool
-是否打开身份验证
-#### authUser: string
-身份验证账号
-#### authPassword: string
-身份验证密码
-### const ext: Object
-通过直接清空该对象内的内容，你可以直接停用新浪微博扩展和自动封号扩展。
 
+以下标有``*``的配置项，运行时不可在后台修改。
+
+```javascript
+	"rooms": {
+		"房间1": {
+			* "display": "房间显示名",
+			* "table": "对应MySQL的数据表、MongoDB的集合", 
+			"connectpassword": "客户端连接密码",
+			"managepassword": "管理密码",
+			"advancedpassword": "高级弹幕密码",  
+			"keyword": {
+				"block": /强制屏蔽关键词，正则格式。/
+				"replacement": /替换关键词，正则格式/,
+				"ignore": /忽略词，正则格式/
+			},
+			"blockusers": [
+				"默认封禁用户列表"
+			],
+			"maxlength": 弹幕堆积队列最大长度, 
+			"textlength": 每条弹幕最大长度, 
+			* "image": {
+				* "regex": /图片弹幕解析正则，正则格式，不要修改/ig,
+				* "lifetime": 每个图片给每条弹幕增加的存货时间 
+			},
+			"permissions": { // 普通用户允许的弹幕权限
+				"send": 弹幕开关；关闭后无论普通用户还是高级权限都完全禁止弹幕。, 
+				"style": 弹幕样式开关, 
+				"color": 颜色开关, 
+				"textStyle": CSS开关, 
+				"height": 高度开关, 
+				"lifeTime": 显示时间开关, 
+			}
+		},
+		"房间ID2": {
+			// 同上
+		}
+	},
+	* "database": { // 数据库
+		* "type": "数据库类型（mysql / mongo / csv / none）",
+		* "server": " 数据库地址（mysql / mongo）",
+		* "username": "数据库用户名（mysql）",
+		* "password": "数据库密码（mysql）",
+		* "port": "数据库端口（mysql / mongo）",
+		* "db": "数据库（mysql / mongo）", 
+		* "retry": 24小时允许断线重连最大次数，超过则自动退出程序。24小时以第一次断线时间计。（mysql）,
+		* "timeout": 数据库重连延时及Ping（mysql）, 
+		* "savedir": "指定文件保存位置（csv）",
+	},
+	"websocket": {
+		"interval": 弹幕发送间隔
+		"singlesize": 每次弹幕发送数量
+	},
+	* "http": {
+		* "port": 服务器HTTP端口, 
+		* "headers": {}, // HTTP头
+		* "sessionKey": "随便写点，防冲突的"
+	},
+	* "cache": {
+		* "type": "缓存类型（memcached / aliyun）", 
+		* "host": "缓存服务器地址，可用socket", 
+		* "auth": 打开身份验证,  
+		* "authUser": 身份验证账号,
+		* "authPassword": 身份验证密码,
+	},
+	"ext": {
+		// 扩展
+	}
+}
+```
 
 ## 常见问题
 ### 数据库相关

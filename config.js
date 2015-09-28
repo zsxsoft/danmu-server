@@ -65,15 +65,15 @@ module.exports = {
 		}
 	},
 	"database": {
-		"type": "mysql", // 数据库类型
-		"server": "127.0.0.1", // 数据库地址
-		"username": "root", // 数据库用户名
-		"password": "123456", // 数据库密码
-		"port": "3306", // 数据库端口
-		"db": "danmu", // 数据库
-		"retry": 10, // 24小时允许断线重连最大次数，超过则自动退出程序。24小时以第一次断线时间计。
-		"timeout": 1000, // 数据库重连延时及Ping
-		"savedir": "./", // （仅限CSV）指定文件保存位置
+		"type": "mongo", // 数据库类型（mysql / mongo / csv / none）
+		"server": "127.0.0.1", // 数据库地址（mysql / mongo）
+		"username": "root", // 数据库用户名（mysql）
+		"password": "123456", // 数据库密码（mysql）
+		"port": "27017", // 数据库端口（mysql / mongo）
+		"db": "danmu", // 数据库（mysql / mongo）
+		"retry": 10, // 24小时允许断线重连最大次数，超过则自动退出程序。24小时以第一次断线时间计。（mysql）
+		"timeout": 1000, // 数据库重连延时及Ping（mysql）
+		"savedir": "./", // 指定文件保存位置（csv）
 	},
 	"websocket": {
 		"interval": 10, // 弹幕发送间隔
