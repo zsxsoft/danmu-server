@@ -12,7 +12,7 @@ module.exports = {
 				"replacement": /父|母|夫|妻|女儿|儿子|孙子|孙女|女婿|娘|爹|爸|妈|爷|奶|哥|弟|兄|姐|妹|鸡|鸭|狗|猪|gay|mother|mom|father|dad|sister|brother|son|daughter|dog|pig/ig,
 				// 替换关键词
 				"ignore": /\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|_|\||\+|\-|\=|\{|\}|\[|\]|\;|\'|\:|\"|\<|\>|\?|\/|\.|\,|\！|\＃|\￥|\…|\（|\）|\—|\、|\【|\】|\｛|\｝|\；|\：|\‘|\’|\“|\”|\《|\》|\＼|\，|\。|\、|\？|\ |\　/ig
-				// 忽略词
+					// 忽略词
 			},
 			"blockusers": [ // 封禁用户
 				"test"
@@ -22,7 +22,7 @@ module.exports = {
 			"image": {
 				"regex": /\[IMG WIDTH=(\d+)\](.+?)\[\/IMG\]/ig, // 图片弹幕
 				"lifetime": 1000 // 每个图片给每条弹幕增加的时间
-			}, 
+			},
 			"permissions": { // 普通用户允许的弹幕权限
 				"send": true, // 弹幕开关；关闭后无论普通用户还是高级权限都完全禁止弹幕。
 				"style": false, // 弹幕样式开关
@@ -31,13 +31,44 @@ module.exports = {
 				"height": false, // 高度开关
 				"lifeTime": false, // 显示时间开关
 			}
+		},
+		"unlimited": {
+			"display": "无限房间",
+			"table": "room_unlimited", // 数据表
+			"connectpassword": "", // 客户端连接密码
+			"managepassword": "", // 管理密码
+			"advancedpassword": "", // 高级弹幕密码
+			"keyword": {
+				"block": /^$/,
+				// 强制屏蔽关键词
+				"replacement": /^$/,
+				// 替换关键词
+				"ignore": /^$/
+					// 忽略词
+			},
+			"blockusers": [ // 封禁用户
+			],
+			"maxlength": 1000, // 队列最大长度
+			"textlength": 10000, // 弹幕最大长度
+			"image": {
+				"regex": /\[IMG WIDTH=(\d+)\](.+?)\[\/IMG\]/ig, // 图片弹幕
+				"lifetime": 1000 // 每个图片给每条弹幕增加的时间
+			},
+			"permissions": { // 普通用户允许的弹幕权限
+				"send": true, // 弹幕开关；关闭后无论普通用户还是高级权限都完全禁止弹幕。
+				"style": true, // 弹幕样式开关
+				"color": true, // 颜色开关
+				"textStyle": true, // CSS开关
+				"height": true, // 高度开关
+				"lifeTime": true, // 显示时间开关
+			}
 		}
 	},
 	"database": {
 		"type": "mysql", // 数据库类型
 		"server": "127.0.0.1", // 数据库地址
 		"username": "root", // 数据库用户名
-		"password": "", // 数据库密码
+		"password": "123456", // 数据库密码
 		"port": "3306", // 数据库端口
 		"db": "danmu", // 数据库
 		"retry": 10, // 24小时允许断线重连最大次数，超过则自动退出程序。24小时以第一次断线时间计。
@@ -58,7 +89,7 @@ module.exports = {
 	},
 	"cache": {
 		"type": "memcached", // 缓存类型，支持memcached和aliyun。后者需要npm install aliyun-sdk
-		"host" : "127.0.0.1:11211", // 缓存服务器地址，可用socket
+		"host": "127.0.0.1:11211", // 缓存服务器地址，可用socket
 		"auth": false, // 是否打开身份验证
 		"authUser": "", // 身份验证账号
 		"authPassword": "" // 身份验证密码

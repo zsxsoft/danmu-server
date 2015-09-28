@@ -15,6 +15,9 @@ danmu-server
 - 记录用户的每一条弹幕（MySQL）
 - 易于部署，简单高效
 
+## 后台截图
+![后台截图](http://zsxsoft.github.io/danmu-server/management.png)
+
 
 ## 部署方式
 
@@ -121,6 +124,8 @@ danmu-server
 
 ## 负载测试
 
+此处测试已过时
+<del>
 环境：
 > Linux 3.10.0-123.9.3.el7.x86_64
 
@@ -149,8 +154,9 @@ danmu-server
 默认配置，开启新浪微博登录，开启自动封禁。QPS 444.42 / 536.25
 
 默认配置，关闭新浪微博登录，关闭自动封禁。QPS 633.99 / 865.28
-
+</del>
 ## 流程图
+
 ![流程图](http://zsxsoft.github.io/danmu-server/route.png)
 
 ## 协议

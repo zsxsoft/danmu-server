@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>发送弹幕 - 高级</title>
+    <title>发送弹幕</title>
     <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -90,7 +90,7 @@
                 </div>
                 <p>&nbsp;</p>
             </div>
-            <div class="row danmu-advanced danmu-txtstyle">
+            <div class="row danmu-advanced danmu-textStyle">
                 <div class="form-group">
                     <label class="col-sm-4 control-label">文字CSS</label>
                     <div class="col-sm-8">
@@ -108,7 +108,7 @@
                 </div>
                 <p>&nbsp;</p>
             </div>
-            <div class="row danmu-advanced danmu-time">
+            <div class="row danmu-advanced danmu-lifTtime">
                 <div class="form-group">
                     <label class="col-sm-4 control-label">显示时间</label>
                     <div class="col-sm-8">
@@ -148,13 +148,14 @@
     <script>
     <%
     var ret = {};
-    for (var item in config.rooms) {
+    var keys = Object.keys(config.rooms);
+    keys.map(function(item) {
     	ret[item] = config.rooms[item].permissions;
-    }
+    });
     %>
     $(function() {
         var roomsConfig = <%-JSON.stringify(ret);%>;
-        var room = "default";
+        var room = "<%=keys[0]%>";
 
         calculateHash();
         initializeRoomSelector();
@@ -197,24 +198,30 @@
         }
 
         function initializeRoomSelector() {
-            $(".modal").modal({
-                backdrop: false
-            });
 
-            
-            $("#room-choose").on("click", ".list-group-item", function(e) {
-                room = $(this).data("value");
-                $(".modal").modal("hide");
-
+            function initializePermissions(room) {
                 var permissions = roomsConfig[room];
                 if (!permissions) return;
                 for (var item in permissions) {
-                	if (permissions[item]) {
-                		$(".danmu-" + item).show();
-                	}
+                    if (permissions[item]) {
+                        $(".danmu-" + item).show();
+                    }
                 }
+            }
+            <%
+            if (keys.length > 1) {
+            %>
+            $(".modal").modal({
+                backdrop: false
             });
-
+            $("#room-choose").on("click", ".list-group-item", function(e) {
+                room = $(this).data("value");
+                $(".modal").modal("hide");
+                initializePermissions(room);
+            });
+            <%
+            }
+            %>
         }
 
         function bindSendButton() {
