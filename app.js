@@ -28,4 +28,3 @@ async.map(["ext", "cache", "transfer", "database", "http", "socket"], function (
 	coordinator.emit("configUpdated");
 	log.log("服务器初始化完成");
 });
-

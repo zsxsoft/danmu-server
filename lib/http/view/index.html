@@ -22,7 +22,7 @@
     }
     
     .danmu-advanced {
-        display: <%=advanced ? "block" : "none"%>;
+        display: <%=advanced ? "block": "none"%>;
     }
     </style>
 </head>
@@ -36,11 +36,11 @@
                 </div>
                 <div class="modal-body">
                     <div class="list-group" id="room-choose">
-                        <%for(var item in config.rooms) {%>
+                        <%roomKeys.map(function(item) {%>
                             <a class="list-group-item" data-value="<%=item%>" href="javascript:;">
                                 <%=config.rooms[item].display%>
                             </a>
-                            <%}%>
+                            <%});%>
                     </div>
                 </div>
             </div>
@@ -146,16 +146,9 @@
         </div>
     </div>
     <script>
-    <%
-    var ret = {};
-    var keys = Object.keys(config.rooms);
-    keys.map(function(item) {
-    	ret[item] = config.rooms[item].permissions;
-    });
-    %>
     $(function() {
-        var roomsConfig = <%-JSON.stringify(ret);%>;
-        var room = "<%=keys[0]%>";
+        var roomsConfig = <%-JSON.stringify(permissions)%>;
+        var room = "<%=roomKeys[0]%>";
 
         calculateHash();
         initializeRoomSelector();
@@ -210,7 +203,7 @@
             }
             initializePermissions(room);
             <%
-            if (keys.length > 1) {
+            if (roomKeys.length > 1) {
             %>
             $(".modal").modal({
                 backdrop: false
@@ -230,7 +223,7 @@
 
             $("#btn-send").click(function() {
                 $.post("/post", {
-                    "type": "<%=advanced?"advanced":""%>",
+                    "type": "<%=advanced? "advanced" : ""%>",
                     "text": $("#txt-barrage").val(),
                     "color": $("[name='txt-color']").val(),
                     "textStyle": $("[name='txt-style']").val(),
