@@ -1,4 +1,4 @@
-FROM node:4.0.0
+FROM node:4.1.1
 MAINTAINER zsx <zsx@zsxsoft.com> 
 
 ## ----------------------------
@@ -14,7 +14,7 @@ RUN apt-get update
 
 ## Install MariaDB
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server pwgen && \
-    rm -rf /var/lib/myTFBoyssql/*
+    rm -rf /var/lib/mysql/*
 RUN sed -i -r 's/bind-address.*$/bind-address = 0.0.0.0/' /etc/mysql/my.cnf
 VOLUME  ["/etc/mysql", "/var/lib/mysql"]
 EXPOSE 3306
@@ -35,7 +35,7 @@ WORKDIR ${APP}/
 ADD ./ ./
 ADD ./docker/ /docker
 RUN chmod +x /docker/*.sh
-RUN npm install --registry=https://registry.npm.taobao.org --verbose
+RUN npm install
 
 ## Clean Garbage
 RUN npm cache clean

@@ -37,7 +37,7 @@ module.exports = {
 		"type": "mysql", // 数据库类型
 		"server": "127.0.0.1", // 数据库地址
 		"username": "root", // 数据库用户名
-		"password": "123456", // 数据库密码
+		"password": "", // 数据库密码
 		"port": "3306", // 数据库端口
 		"db": "danmu", // 数据库
 		"retry": 10, // 24小时允许断线重连最大次数，超过则自动退出程序。24小时以第一次断线时间计。
@@ -58,7 +58,7 @@ module.exports = {
 	},
 	"cache": {
 		"type": "memcached", // 缓存类型，支持memcached和aliyun。后者需要npm install aliyun-sdk
-		"host" : "192.168.81.134:11211", // 缓存服务器地址，可用socket
+		"host" : "127.0.0.1:11211", // 缓存服务器地址，可用socket
 		"auth": false, // 是否打开身份验证
 		"authUser": "", // 身份验证账号
 		"authPassword": "" // 身份验证密码
