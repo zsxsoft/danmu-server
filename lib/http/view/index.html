@@ -24,6 +24,7 @@
     .danmu-advanced {
         display: <%=advanced ? "block": "none"%>;
     }
+
     </style>
 </head>
 
@@ -58,97 +59,111 @@
     </nav>
     <div class="container">
         <div class="starter-template">
-            <div class="row">
-                <p class="text-success">发送你的弹幕吧！</p>
-            </div>
-            <div class="row">
-                <textarea class="form-control" row="4" id="txt-barrage"></textarea>
-            </div>
-            <p>&nbsp;</p>
-            <div class="row danmu-advanced danmu-style">
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">特效</label>
-                    <div class="col-sm-8">
-                        <label class="radio-inline">
-                            <input type="radio" name="control-style" value="scroll">滚动</label>
-                        <label class="radio-inline">
-                            <input type="radio" name="control-style" value="reversescroll">反向滚动</label>
-                        <label class="radio-inline">
-                            <input type="radio" name="control-style" value="staticup">固定最上</label>
-                        <label class="radio-inline">
-                            <input type="radio" name="control-style" value="staticdown">固定最下</label>
-                    </div>
+            <form id="form-ret">
+                <div class="row">
+                    <p class="text-success">发送你的弹幕吧！</p>
+                </div>
+                <div class="row">
+                    <textarea class="form-control" name="text" row="4" id="txt-barrage"></textarea>
                 </div>
                 <p>&nbsp;</p>
-            </div>
-            <div class="row danmu-advanced danmu-color">
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">颜色(16进制)</label>
-                    <div class="col-sm-8">
-                        <input type="color" class="form-control" name="txt-color" value="#ffffff" />
+                <div class="row danmu-advanced danmu-style">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">特效</label>
+                        <div class="col-sm-8">
+                            <label class="radio-inline">
+                                <input type="radio" name="style" value="scroll" checked>滚动</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="style" value="reversescroll">反向滚动</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="style" value="staticup">固定最上</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="style" value="staticdown">固定最下</label>
+                            <label class="radio-inline danmu-sourceCode">
+                                <input type="radio" name="style" value="custom">自定义</label>
+                        </div>
+                    </div>
+                    <p>&nbsp;</p>
+                </div>
+                <div class="row danmu-advanced danmu-color">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">颜色(16进制)</label>
+                        <div class="col-sm-8">
+                            <input type="color" name="color" class="form-control" name="txt-color" value="#ffffff" />
+                        </div>
+                    </div>
+                    <p>&nbsp;</p>
+                </div>
+                <div class="row danmu-advanced danmu-textStyle">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">文字CSS</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="textStyle" class="form-control" name="txt-style" value="normal bold 3em 微软雅黑" />
+                        </div>
+                    </div>
+                    <p>&nbsp;</p>
+                </div>
+                <div class="row danmu-advanced danmu-height">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">弹幕高度</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="height" class="form-control" name="txt-height" value="30" />
+                        </div>
+                    </div>
+                    <p>&nbsp;</p>
+                </div>
+                <div class="row danmu-advanced danmu-lifeTime">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">显示时间</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="lifeTime" class="form-control" name="txt-time" value="240" />
+                        </div>
+                    </div>
+                    <p>&nbsp;</p>
+                </div>
+                <div class="row danmu-advanced">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">高级弹幕密码</label>
+                        <div class="col-sm-8">
+                            <input type="password" name="password" class="form-control" name="txt-password" value="" />
+                        </div>
+                    </div>
+                    <p>&nbsp;</p>
+                </div>
+                <div class="row">
+                    <button class="form-control btn-success" id="btn-send">喷射</button>
+                </div>
+                <div class="row">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="saveContent">保留发送内容</label>
                     </div>
                 </div>
-                <p>&nbsp;</p>
-            </div>
-            <div class="row danmu-advanced danmu-textStyle">
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">文字CSS</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" name="txt-style" value="normal bold 3em 微软雅黑" />
-                    </div>
+                <input type="hidden" name="type" value="<%=advanced?'advanced':''%>" />
+                <div class="danmu-custom danmu-sourceCode hide">
+                <div class="row">
+                    <p><label>自定义弹幕</label></p>
                 </div>
-                <p>&nbsp;</p>
-            </div>
-            <div class="row danmu-advanced danmu-height">
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">弹幕高度</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" name="txt-height" value="30" />
-                    </div>
+                <div class="row">
+                    <textarea class="form-control" name="sourceCode" row="4" id="txt-custom" placeholder="Enter JavaScript Here.."></textarea>
                 </div>
-                <p>&nbsp;</p>
-            </div>
-            <div class="row danmu-advanced danmu-lifTtime">
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">显示时间</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" name="txt-time" value="240" />
-                    </div>
                 </div>
-                <p>&nbsp;</p>
-            </div>
-            <div class="row danmu-advanced">
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">高级弹幕密码</label>
-                    <div class="col-sm-8">
-                        <input type="password" class="form-control" name="txt-password" value="" />
-                    </div>
+                <div class="row">
+                    <p>
+                        <br/>
+                    </p>
+                    <p>Powered by zsx</p>
+                    <p>若弹幕无法发送，则请刷新。</p>
+                    <p>在弹幕上表白、使用不文明语言有被封号的可能。</p>
                 </div>
-                <p>&nbsp;</p>
-            </div>
-            <div class="row">
-                <button class="form-control btn-success" id="btn-send">喷射</button>
-            </div>
-            <div class="row">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" id="saveContent">保留发送内容</label>
-                </div>
-            </div>
-            <div class="row">
-                <p>
-                    <br/>
-                </p>
-                <p>Powered by zsx</p>
-                <p>若弹幕无法发送，则请刷新。</p>
-                <p>在弹幕上表白、使用不文明语言有被封号的可能。</p>
-            </div>
+            </form>
         </div>
     </div>
     <script>
     $(function() {
         var roomsConfig = <%-JSON.stringify(permissions)%>;
         var room = "<%=roomKeys[0]%>";
+        var danmuHash = null;
 
         calculateHash();
         initializeRoomSelector();
@@ -164,12 +179,12 @@
                 }
                 return o;
             }
-
-            var danmuHash = null;
+            
             // In some modes, localStorage cannot be used.
             try {
                 danmuHash = localStorage.getItem("danmuHash");
             } catch (e) {
+                danmuHash = "CANNOT_GET_HASH";
                 // eat it
             }
 
@@ -202,6 +217,15 @@
                 }
             }
             initializePermissions(room);
+
+            $("input[name='style']").change(function(e) {
+                if ($(this).val() == "custom") {
+                    $(".danmu-custom").removeClass("hide");
+                } else {
+                    $(".danmu-custom").addClass("hide");
+                }
+            });
+
             <%
             if (roomKeys.length > 1) {
             %>
@@ -220,20 +244,15 @@
 
         function bindSendButton() {
 
-
             $("#btn-send").click(function() {
-                $.post("/post", {
-                    "type": "<%=advanced? "advanced" : ""%>",
-                    "text": $("#txt-barrage").val(),
-                    "color": $("[name='txt-color']").val(),
-                    "textStyle": $("[name='txt-style']").val(),
-                    "lifeTime": $("[name='txt-time']").val(),
-                    "style": $("[name='control-style']:checked").val(),
-                    "password": $("[name='txt-password']").val(),
-                    "height": $("[name='txt-height']").val(),
-                    "hash": localStorage.danmuHash,
-                    "room": room
-                }).done(function(data) {
+                var ret = {};
+                var object = $("#form-ret").serializeArray();
+                for (var i = 0; i < object.length; i++) {
+                    ret[object[i].name] = object[i].value;
+                }
+                ret.hash = danmuHash;
+                ret.room = room;
+                $.post("/post", ret).done(function(data) {
                     alert(data);
                     if (!$("#saveContent")[0].checked) $("#txt-barrage").val("").focus();
                     $("#btn-send").removeAttr('disabled');
