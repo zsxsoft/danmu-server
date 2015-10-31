@@ -21,7 +21,7 @@ module.exports = {
 			"textlength": 1000, // 弹幕最大长度
 			"image": {
 				"regex": /\[IMG WIDTH=(\d+)\](.+?)\[\/IMG\]/ig, // 图片弹幕
-				"lifetime": 1000 // 每个图片给每条弹幕增加的时间
+				"lifetime": 300 // 每个图片给每条弹幕增加的时间
 			},
 			"permissions": { // 普通用户允许的弹幕权限
 				"send": true, // 弹幕开关；关闭后无论普通用户还是高级权限都完全禁止弹幕。
@@ -30,6 +30,7 @@ module.exports = {
 				"textStyle": false, // CSS开关
 				"height": false, // 高度开关
 				"lifeTime": false, // 显示时间开关
+				"sourceCode": false, // 自定义高级JavaScript弹幕开关
 			}
 		},
 		"unlimited": {
@@ -52,7 +53,7 @@ module.exports = {
 			"textlength": 10000, // 弹幕最大长度
 			"image": {
 				"regex": /\[IMG WIDTH=(\d+)\](.+?)\[\/IMG\]/ig, // 图片弹幕
-				"lifetime": 1000 // 每个图片给每条弹幕增加的时间
+				"lifetime": 300 // 每个图片给每条弹幕增加的时间
 			},
 			"permissions": { // 普通用户允许的弹幕权限
 				"send": true, // 弹幕开关；关闭后无论普通用户还是高级权限都完全禁止弹幕。
@@ -61,6 +62,7 @@ module.exports = {
 				"textStyle": true, // CSS开关
 				"height": true, // 高度开关
 				"lifeTime": true, // 显示时间开关
+				"sourceCode": true, // 自定义高级JavaScript弹幕开关
 			}
 		}
 	},
@@ -68,7 +70,7 @@ module.exports = {
 		"type": "mysql", // 数据库类型（mysql / mongo / csv / none）
 		"server": "127.0.0.1", // 数据库地址（mysql / mongo）
 		"username": "root", // 数据库用户名（mysql / mongo）
-		"password": "", // 数据库密码（mysql / mongo）
+		"password": "123456", // 数据库密码（mysql / mongo）
 		"port": "3306", // 数据库端口（mysql / mongo）
 		"db": "danmu", // 数据库（mysql / mongo）
 		"retry": 10, // 24小时允许断线重连最大次数，超过则自动退出程序。24小时以第一次断线时间计。（mysql）
