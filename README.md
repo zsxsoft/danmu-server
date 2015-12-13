@@ -1,5 +1,6 @@
 danmu-server
 ================
+[![David deps](https://david-dm.org/zsxsoft/danmu-server.svg)](https://david-dm.org/zsxsoft/danmu-server)
 
 弹幕服务器。
 
