@@ -8,8 +8,8 @@
     <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="/manage.css" rel="stylesheet">
-    <script src="http://cdn.staticfile.org/angular.js/1.3.0-beta.9/angular.min.js"></script>
-    <script src="http://cdn.staticfile.org/angular-ui-bootstrap/0.11.2/ui-bootstrap-tpls.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="http://cdn.staticfile.org/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
     <title>系统管理</title>
 </head>
 
@@ -21,13 +21,13 @@
     </nav>
     <div class="container-fluid">
         <div class="row">
-            <alert type="danger" ng-show="haveError">错误{{err.code}}：{{err.desc}}；建议刷新页面。</alert>
+            <uib-alert type="danger" ng-show="haveError">错误{{err.code}}：{{err.desc}}；建议刷新页面。</uib-alert>
             <div class="col-sm-12 col-md-12 main">
-                <accordion close-others="accordion.closeOther">
-                    <accordion-group heading="管理信息" is-open="accordion.openInfo" is-disabled="accordion.disableInfo">
+                <uib-accordion close-others="accordion.closeOther">
+                    <uib-accordion-group heading="管理信息" is-open="accordion.openInfo" is-disabled="accordion.disableInfo">
                         <div class="container">
-                            <alert type="danger" ng-show="!isLogin">务必先填入房间信息再进行管理。</alert>
-                            <alert type="success" ng-show="isLogin">你选择了{{room}}房间</alert>
+                            <uib-alert type="danger" ng-show="!isLogin">务必先填入房间信息再进行管理。</uib-alert>
+                            <uib-alert type="success" ng-show="isLogin">你选择了{{room}}房间</uib-alert>
                             <div class="list-group" ng-show="!isLogin">
                                 <a href="#" class="list-group-item" ng-class="{active: room == roomS.id}" ng-repeat="roomS in roomList" ng-click="initRoom(roomS.id)">{{roomS.display}} ({{roomS.id}})</a>
                             </div>
@@ -40,8 +40,8 @@
                                 </div>
                             </form>
                         </div>
-                    </accordion-group>
-                    <accordion-group heading="弹幕搜索" is-open="accordion.openDanmu">
+                    </uib-accordion-group>
+                    <uib-accordion-group heading="弹幕搜索" is-open="accordion.openDanmu">
                         <div ng-controller="DanmuCtrl" class="container">
                             <form ng-submit="danmu.doSearch()">
                                 <div class="input-group">
@@ -69,8 +69,8 @@
                                 </table>
                             </div>
                         </div>
-                    </accordion-group>
-                    <accordion-group heading="黑名单管理" is-open="accordion.openBlock">
+                    </uib-accordion-group>
+                    <uib-accordion-group heading="黑名单管理" is-open="accordion.openBlock">
                         <div ng-controller="BlockCtrl" class="container">
                             <form ng-submit="block.doAdd()">
                                 <div class="input-group">
@@ -87,8 +87,8 @@
                                 <button type="button" class="btn btn-primary btn-sm" ng-repeat="item in block.result track by $index" style="margin-right: 5px" ng-click="block.doRemove(item)" ng-value="item">{{item}}</button>
                             </div>
                         </div>
-                    </accordion-group>
-                    <accordion-group heading="权限设置" is-open="accordion.openPermissions">
+                    </uib-accordion-group>
+                    <uib-accordion-group heading="权限设置" is-open="accordion.openPermissions">
                         <div ng-controller="PermissionCtrl" class="container">
                             <form class="form-horizontal" ng-submit="$submitPermissions()">
                                 <div class="form-group">
@@ -138,8 +138,8 @@
                                 </div>
                             </form>
                         </div>
-                    </accordion-group>
-                    <accordion-group heading="参数设置" is-open="accordion.openConfig">
+                    </uib-accordion-group>
+                    <uib-accordion-group heading="参数设置" is-open="accordion.openConfig">
                         <div ng-controller="ConfigCtrl" class="container">
                             <form class="form-horizontal" ng-submit="config.submitConfig()">
                                 <div class="form-group">
@@ -183,8 +183,8 @@
                                 </div>
                             </form>
                         </div>
-                    </accordion-group>
-                    <accordion-group heading="密码设置" is-open="accordion.openPassword">
+                    </uib-accordion-group>
+                    <uib-accordion-group heading="密码设置" is-open="accordion.openPassword">
                         <div ng-controller="PasswordCtrl" class="container">
                             <form class="form-horizontal" ng-submit="$submitPassword('advanced')">
                                 <div class="form-group">
@@ -208,8 +208,8 @@
                                 </div>
                             </form>
                         </div>
-                    </accordion-group>
-                </accordion>
+                    </uib-accordion-group>
+                </uib-accordion>
             </div>
         </div>
     </div>
