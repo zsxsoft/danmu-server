@@ -8,8 +8,8 @@
     <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="/manage.css" rel="stylesheet">
-    <script src="http://cdn.staticfile.org/angular.js/1.3.0-beta.9/angular.min.js"></script>
-    <script src="http://cdn.staticfile.org/angular-ui-bootstrap/0.11.2/ui-bootstrap-tpls.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="http://cdn.staticfile.org/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
     <title>实时弹幕</title>
 </head>
 
@@ -21,13 +21,13 @@
     </nav>
     <div class="container-fluid">
         <div class="row">
-            <alert type="danger" ng-show="haveError">错误{{err.code}}：{{err.desc}}；建议刷新页面。</alert>
+            <uib-alert type="danger" ng-show="haveError">错误{{err.code}}：{{err.desc}}；建议刷新页面。</uib-alert>
             <div class="col-sm-12 col-md-12 main">
-                <accordion close-others="accordion.closeOther">
-                    <accordion-group heading="管理信息" is-open="accordion.openInfo">
+                <uib-accordion close-others="false">
+                    <uib-accordion-group heading="管理信息" is-open="true">
                         <div class="container">
-                            <alert type="danger" ng-show="!isLogin">务必先填入房间信息再进行管理。</alert>
-                            <alert type="success" ng-show="isLogin">你选择了{{room}}房间</alert>
+                            <uib-alert type="danger" ng-show="!isLogin">务必先填入房间信息再进行管理。</uib-alert>
+                            <uib-alert type="success" ng-show="isLogin">你选择了{{room}}房间</uib-alert>
                             <div class="list-group" ng-show="!isLogin">
                                 <a href="#" class="list-group-item" ng-class="{active: room == roomS.id}" ng-repeat="roomS in roomList" ng-click="initRoom(roomS.id)">{{roomS.display}} ({{roomS.id}})</a>
                             </div>
@@ -40,17 +40,33 @@
                                 </div>
                             </form>
                         </div>
-                    </accordion-group>
-                    <accordion-group heading="实时弹幕">
+                    </uib-accordion-group>
+                    <uib-accordion-group heading="实时弹幕" is-open="true">
                         <div class="container">
-                            
+                            <div ng-repeat="danmu in danmus track by danmu.socketId" style="margin-top: 5px; margin-right: 5px; display: inline-block">
+                            <div class="btn-group" uib-dropdown>
+                              <button id="split-button-{{$index}}" type="button" class="btn btn-primary" ng-click="deleteDanmu($index, danmu.id, false)">{{danmu.text}}</button>
+                              <button type="button" class="btn btn-primary" uib-dropdown-toggle>
+                                <span class="caret"></span>
+                                <span class="sr-only">Split button!</span>
+                              </button>
+                              <ul uib-dropdown-menu role="menu" aria-labelledby="split-button-{{$index}}">
+                                <li role="menuitem" class="disabled"><a href="#">{{danmu.hash}}</a></li>
+                                <li class="divider"></li>
+                                <li role="menuitem"><a href="#" ng-click="deleteDanmu($index, danmu.id, false)">删</a></li>
+                                <li role="menuitem"><a href="#" ng-click="deleteDanmu($index, danmu.id, true)">封</a></li>
+                              </ul>
+                            </div>
+                            </div>
                         </div>
-                    </accordion-group>
-                </accordion>
+                    </uib-accordion-group>
+                </uib-accordion>
             </div>
         </div>
     </div>
-    <script>var serverVersion = "<%=version%>";</script>
+    <script>
+    var serverVersion = "<%=version%>";
+    </script>
     <script src="realtime.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 </body>
