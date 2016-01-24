@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="danmu.manage" ng-controller="MainCtrl">
+<html lang="en" ng-app="danmu.realtime" ng-controller="MainCtrl">
 
 <head>
     <meta charset="utf-8">
@@ -16,7 +16,7 @@
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
-            <div class="navbar-header"><a class="navbar-brand" href="#">系统管理</a></div>
+            <div class="navbar-header"><a class="navbar-brand" href="#">实时弹幕</a></div>
         </div>
     </nav>
     <div class="container-fluid">
@@ -24,7 +24,7 @@
             <alert type="danger" ng-show="haveError">错误{{err.code}}：{{err.desc}}；建议刷新页面。</alert>
             <div class="col-sm-12 col-md-12 main">
                 <accordion close-others="accordion.closeOther">
-                    <accordion-group heading="管理信息" is-open="accordion.openInfo" is-disabled="accordion.disableInfo">
+                    <accordion-group heading="管理信息" is-open="accordion.openInfo">
                         <div class="container">
                             <alert type="danger" ng-show="!isLogin">务必先填入房间信息再进行管理。</alert>
                             <alert type="success" ng-show="isLogin">你选择了{{room}}房间</alert>
@@ -41,10 +41,18 @@
                             </form>
                         </div>
                     </accordion-group>
+                    <accordion-group heading="实时弹幕">
+                        <div class="container">
+                            
+                        </div>
+                    </accordion-group>
                 </accordion>
             </div>
         </div>
     </div>
+    <script>var serverVersion = "<%=version%>";</script>
+    <script src="realtime.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 </body>
 
 </html>

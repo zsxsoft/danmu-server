@@ -2,8 +2,9 @@
 /* global log */
 /* global coordinator */
 /* global global */
+"use strict";
 (function () {
-	"use strict";
+	
 	let packageJson = require("./package.json");
 	global.version = packageJson.version;
 	global.config = require('./config');
