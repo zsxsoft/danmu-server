@@ -39,5 +39,8 @@
   "bugs": {
     "url": "https://github.com/zsxsoft/danmu-server/issues"
   },
-  "homepage": "https://github.com/zsxsoft/danmu-server#readme"
+  "homepage": "https://github.com/zsxsoft/danmu-server#readme",
+  "engines": {
+    "node": ">=4.0"
+  }
 }

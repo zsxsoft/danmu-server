@@ -21,14 +21,19 @@ danmu-server
 ## 后台截图
 ![后台截图](http://zsxsoft.github.io/danmu-server/management.png)
 
+## 兼容性警告
+
+Node 4.0以下版本（如0.10、0.12），请使用Release下的1.0.4版本。
+
+
 ## 部署方式
 
 ### 检查环境
 
 #### Nodejs
- 必须安装[Nodejs](https://nodejs.org/)。支持``node 0.10``以上版本和``iojs 1.0``以上版本。
+ 必须安装[Nodejs](https://nodejs.org/)。支持``node 4.0``以上版本。
 
- 强烈推荐使用最新版本Nodejs（截至写文档时，最新版本为``4.1.1``）。
+ 强烈推荐使用最新版本Nodejs（截至写文档时，最新版本为``5.1.1``）。
 
 #### 数据库
  如使用``csv``，可无视此节。
