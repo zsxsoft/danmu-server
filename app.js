@@ -4,14 +4,15 @@
 /* global global */
 (function () {
 	"use strict";
-	global.version = "0.0.4-20150928a";
+	let packageJson = require("./package.json");
+	global.version = packageJson.version;
 	global.config = require('./config');
 
 	// 公用函数
 	require("./lib/utils");
 
 	
-	var dbPos = config.database;
+	let dbPos = config.database;
 	if (process.env.MYSQL_PORT_3306_TCP_PORT) { // 检测DaoCloud的MySQL服务
 		dbPos.type = "mysql";
 		dbPos.server = process.env.MYSQL_PORT_3306_TCP_ADDR;
@@ -31,9 +32,9 @@
 	}
 
 	// 加载模块
-	async.map(["ext", "cache", "transfer", "database", "http", "socket"], function (module, callback) {
+	async.map(["ext", "cache", "transfer", "database", "http", "socket"], (module, callback) => {
 		require("./lib/" + module).init(callback);
-	}, function (err) {
+	}, (err) => {
 		coordinator.emit("configUpdated");
 		log.log("服务器初始化完成");
 	});
