@@ -45,7 +45,7 @@
                         <div class="container">
                             <div ng-repeat="danmu in danmus track by danmu.socketId" style="margin-top: 5px; margin-right: 5px; display: inline-block">
                             <div class="btn-group" uib-dropdown>
-                              <button id="split-button-{{$index}}" type="button" class="btn btn-primary" ng-click="deleteDanmu($index, danmu.id, false)">{{danmu.text}}</button>
+                              <button id="split-button-{{$index}}" type="button" class="btn btn-primary" ng-click="deleteDanmu($index, danmu.id, '')">{{danmu.text}}</button>
                               <button type="button" class="btn btn-primary" uib-dropdown-toggle>
                                 <span class="caret"></span>
                                 <span class="sr-only">Split button!</span>
@@ -53,8 +53,8 @@
                               <ul uib-dropdown-menu role="menu" aria-labelledby="split-button-{{$index}}">
                                 <li role="menuitem" class="disabled"><a href="#">{{danmu.hash}}</a></li>
                                 <li class="divider"></li>
-                                <li role="menuitem"><a href="#" ng-click="deleteDanmu($index, danmu.id, false)">删</a></li>
-                                <li role="menuitem"><a href="#" ng-click="deleteDanmu($index, danmu.id, true)">封</a></li>
+                                <li role="menuitem"><a href="#" ng-click="deleteDanmu($index, danmu.id, '')">删</a></li>
+                                <li role="menuitem"><a href="#" ng-click="deleteDanmu($index, danmu.id, danmu.hash)">封</a></li>
                               </ul>
                             </div>
                             </div>
