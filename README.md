@@ -16,15 +16,17 @@ danmu-server
 - 扩展；
    - 新浪微博登录扩展（需要开启缓存）；
    - 自动封禁功能扩展（需要开启缓存）；
+- 删除单条弹幕功能；
 - 易于部署，简单高效。
 
 ## 后台截图
 ![后台截图](http://zsxsoft.github.io/danmu-server/management.png)
 
-## 兼容性警告
+## 一些警告
 
-Node 4.0以下版本（如0.10、0.12），请使用Release下的1.0.4版本。
+稳定版请于[Release](https://github.com/zsxsoft/danmu-client/releases)手动下载。
 
+Node 4.0以下版本（如0.10、0.12），请使用[Release](https://github.com/zsxsoft/danmu-client/releases)下的1.0.4版本。
 
 ## 部署方式
 
@@ -76,6 +78,9 @@ Node 4.0以下版本（如0.10、0.12），请使用Release下的1.0.4版本。
 
 ### GET /manage
 可以进行后台管理
+
+### GET /realtime
+可以实时接收弹幕并直接删除或封禁（需要密码）
 
 ## 配置说明
 
