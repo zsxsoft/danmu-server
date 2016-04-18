@@ -4,6 +4,8 @@ danmu-server
 
 弹幕服务器。
 
+<b>目前的新浪微博模块因模块被从npm下架而无法使用，在修复前请关闭此功能。</b>
+
 
 ## 功能特色
 - 跨平台；
@@ -27,6 +29,7 @@ danmu-server
 稳定版请于[Release](https://github.com/zsxsoft/danmu-client/releases)手动下载。
 
 Node 4.0以下版本（如0.10、0.12），请使用[Release](https://github.com/zsxsoft/danmu-client/releases)下的1.0.4版本。
+
 
 ## 部署方式
 
