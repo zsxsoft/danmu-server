@@ -4,9 +4,6 @@ danmu-server
 
 弹幕服务器。
 
-<b>目前的新浪微博模块因模块被从npm下架而无法使用，在修复前请关闭此功能。</b>
-
-
 ## 功能特色
 - 跨平台；
 - 房间功能，可用一个端口为多个不同的弹幕客户端提供服务；
@@ -28,8 +25,6 @@ danmu-server
 
 稳定版请于[Release](https://github.com/zsxsoft/danmu-client/releases)手动下载。
 
-Node 4.0以下版本（如0.10、0.12），请使用[Release](https://github.com/zsxsoft/danmu-client/releases)下的1.0.4版本。
-
 
 ## 部署方式
 
@@ -38,7 +33,7 @@ Node 4.0以下版本（如0.10、0.12），请使用[Release](https://github.com
 #### Nodejs
  必须安装[Nodejs](https://nodejs.org/)。支持``node 4.0``以上版本。
 
- 强烈推荐使用最新版本Nodejs（截至写文档时，最新版本为``5.1.1``）。
+ 强烈推荐使用最新版本Nodejs（截至写文档时，最新稳定版为``5.1.1``）。
 
 #### 数据库
  如使用``csv``，可无视此节。
