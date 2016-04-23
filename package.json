@@ -6,23 +6,23 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "async": "^1.5.2",
-    "body-parser": "^1.14.2",
+    "async": "^2.0.0-rc.3",
+    "body-parser": "^1.15.0",
     "cookie-parser": "^1.4.1",
-    "ejs": "^2.3.4",
+    "ejs": "^2.4.1",
     "errorhandler": "^1.4.3",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "memcached": "^2.2.1",
-    "morgan": "^1.6.1",
+    "morgan": "^1.7.0",
     "mysql": "^2.10.2",
     "passport": "^0.3.2",
-    "passport-weibo-token": "3.0.6",
-    "socket.io": "^1.4.4"
+    "passport-sina": "git+https://github.com/zsxtoys/passport-sina-fork.git",
+    "socket.io": "^1.4.5"
   },
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-jshint": "^0.12.0"
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0"
   },
   "description": "danmu-server",
   "main": "app.js",
