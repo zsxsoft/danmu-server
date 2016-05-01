@@ -5,6 +5,7 @@
 (function () {
 	
 	let async = require('async');
+	let listener = require('./lib/utils/event');
 	let packageJson = require("./package.json");
 	global.version = packageJson.version;
 	global.config = require('./config');
@@ -36,7 +37,7 @@
 	async.map(["ext", "cache", "transfer", "database", "http", "socket"], (mdl, callback) => {
 		require(`./lib/${mdl}`).init(callback);
 	}, (err) => {
-		coordinator.emit("configUpdated");
+		listener.emit("configUpdated");
 		log.log("服务器初始化完成");
 	});
 
