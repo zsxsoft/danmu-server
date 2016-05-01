@@ -2,7 +2,9 @@ danmu-server
 ================
 [![David deps](https://david-dm.org/zsxsoft/danmu-server.svg)](https://david-dm.org/zsxsoft/danmu-server)
 
-弹幕服务器。
+弹幕服务器，其客户端项目见[danmu-client](https://github.com/zsxsoft/danmu-client)。
+
+**欲使用此项目，客户端需要使用对应的版本。[已发布的服务端](https://github.com/zsxsoft/danmu-server/releases)均已写明对应的客户端版本号，开发分支内的服务端版本仅对应开发分支的客户端。**
 
 ## 功能特色
 - 跨平台；
@@ -166,7 +168,6 @@ danmu-server
 ## 搭配项目
 
 - [danmu-client](https://github.com/zsxsoft/danmu-client)
-- [screen-controller](https://github.com/zsxsoft/screen-controller)
 
 ## 负载测试
 
