@@ -1,20 +1,21 @@
 /// <reference path="typings/main.d.ts" />
 "use strict";
-(function () {
 
-	let async = require('async');
-	let listener = require('./lib/utils/event');
-	let packageJson = require("./package.json");
-	global.version = packageJson.version;
-	global.config = require('./config');
-	global.log = {
-		log: function (text) {
-			console.log("[" + utils.getTime() + "] " + text);
-		},
-	};
+let async = require('async');
+let listener = require('./lib/utils/event');
+let utils = require('./lib/utils');
+let packageJson = require("./package.json");
+let config = require('./config');
 
-	// 公用函数
-	require("./lib/utils");
+global.version = packageJson.version;
+global.log = {
+	log: function (text) {
+		console.log("[" + utils.getTime() + "] " + text);
+	},
+};
+
+(() => {
+
 
 
 	let dbPos = config.database;
