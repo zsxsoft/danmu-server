@@ -1,6 +1,6 @@
 /// <reference path="typings/main.d.ts" />
 "use strict";
-
+let os = require('os');
 let async = require('async');
 let listener = require('./lib/utils/event');
 let utils = require('./lib/utils');
@@ -15,8 +15,8 @@ global.log = {
 };
 
 (() => {
-
-
+	log.log(`环境：${os.platform()}(${os.release()}) ${os.arch()} with ${parseInt(os.totalmem()/1024/1024)}MB`);
+	
 
 	let dbPos = config.database;
 	if (process.env.MYSQL_PORT_3306_TCP_PORT) { // 检测DaoCloud的MySQL服务
