@@ -1,6 +1,4 @@
 /* global log */
-/* global coordinator */
-/* global global */
 "use strict";
 (function () {
 	
@@ -12,7 +10,7 @@
 
 	// 公用函数
 	require("./lib/utils");
-
+	
 	
 	let dbPos = config.database;
 	if (process.env.MYSQL_PORT_3306_TCP_PORT) { // 检测DaoCloud的MySQL服务
