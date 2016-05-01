@@ -1,10 +1,10 @@
-/* global async */
 /* global log */
 /* global coordinator */
 /* global global */
 "use strict";
 (function () {
 	
+	let async = require('async');
 	let packageJson = require("./package.json");
 	global.version = packageJson.version;
 	global.config = require('./config');
@@ -22,7 +22,7 @@
 		dbPos.port = process.env.MYSQL_PORT_3306_TCP_PORT;
 		dbPos.db = process.env.MYSQL_INSTANCE_NAME;
 		console.log("检测到配置在环境变量内的MySQL，自动使用之。");
-	} else if (dbPos.type == "mongo" && process.env["27017/tcp"]) { // MongoDB服务
+	} else if (dbPos.type === "mongo" && process.env["27017/tcp"]) { // MongoDB服务
 		dbPos.type = "mongo";
 		dbPos.server = process.env["27017/tcp"].split(":")[0].trim(); // tcp://xx.xx.xx.xx:27017
 		dbPos.port = process.env["27017/tcp"].split(":")[1].trim(); // tcp://xx.xx.xx.xx:27017
@@ -33,8 +33,8 @@
 	}
 
 	// 加载模块
-	async.map(["ext", "cache", "transfer", "database", "http", "socket"], (module, callback) => {
-		require("./lib/" + module).init(callback);
+	async.map(["ext", "cache", "transfer", "database", "http", "socket"], (mdl, callback) => {
+		require(`./lib/${mdl}`).init(callback);
 	}, (err) => {
 		coordinator.emit("configUpdated");
 		log.log("服务器初始化完成");
