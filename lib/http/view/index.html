@@ -29,24 +29,6 @@
 </head>
 
 <body>
-    <div class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">房间选择</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="list-group" id="room-choose">
-                        <%roomKeys.map(function(item) {%>
-                            <a class="list-group-item" data-value="<%=item%>" href="javascript:;">
-                                <%=config.rooms[item].display%>
-                            </a>
-                            <%});%>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -161,8 +143,8 @@
     </div>
     <script>
     $(function() {
-        var roomsConfig = <%-JSON.stringify(permissions)%>;
-        var room = "<%=roomKeys[0]%>";
+        var roomsConfig = <%-JSON.stringify(permission)%>;
+        var room = "<%=room%>";
         var danmuHash = null;
 
         calculateHash();
@@ -208,10 +190,8 @@
         function initializeRoomSelector() {
 
             function initializePermissions(room) {
-                var permissions = roomsConfig[room];
-                if (!permissions) return;
-                for (var item in permissions) {
-                    if (permissions[item]) {
+                for (var item in roomsConfig) {
+                    if (roomsConfig[item]) {
                         $(".danmu-" + item).show();
                     }
                 }
@@ -226,20 +206,6 @@
                 }
             });
 
-            <%
-            if (roomKeys.length > 1) {
-            %>
-            $(".modal").modal({
-                backdrop: false
-            });
-            $("#room-choose").on("click", ".list-group-item", function(e) {
-                room = $(this).data("value");
-                $(".modal").modal("hide");
-                initializePermissions(room);
-            });
-            <%
-            }
-            %>
         }
 
         function bindSendButton() {
@@ -251,7 +217,6 @@
                     ret[object[i].name] = object[i].value;
                 }
                 ret.hash = danmuHash;
-                ret.room = room;
                 $.post("/post", ret).done(function(data) {
                     alert(data);
                     if (!$("#saveContent")[0].checked) $("#txt-barrage").val("").focus();
