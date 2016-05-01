@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "ramda": "registry:npm/ramda#0.19.1+20160323180342"
+  },
+  "ambientDependencies": {
+    "angular": "registry:dt/angular#1.5.0+20160412133217",
+    "async": "registry:dt/async#1.4.2+20160316155526",
+    "ejs": "registry:dt/ejs#0.0.0+20160317120654",
+    "express": "registry:dt/express#4.0.0+20160317120654",
+    "mongodb": "registry:dt/mongodb#2.1.0+20160425144419",
+    "mysql": "registry:dt/mysql#0.0.0+20160316155526",
+    "node": "registry:dt/node#4.0.0+20160423143914",
+    "passport": "registry:dt/passport#0.2.0+20160317120654",
+    "socket.io": "registry:dt/socket.io#1.4.4+20160317120654"
+  }
+}
