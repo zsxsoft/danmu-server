@@ -6,7 +6,7 @@ danmu-server
 
 ## 功能特色
 - 跨平台；
-- 房间功能，可用一个端口为多个不同的弹幕客户端提供服务；
+- 房间功能，可用绑定多个域名为多个不同的弹幕客户端提供服务；
 - 后台管理；
 - 弹幕记录与搜索（需要开启数据库）；
 - 黑名单功能；
@@ -23,7 +23,7 @@ danmu-server
 
 ## 一些警告
 
-稳定版请于[Release](https://github.com/zsxsoft/danmu-client/releases)手动下载。
+稳定版请于[Release](https://github.com/zsxsoft/danmu-server/releases)手动下载。
 
 
 ## 部署方式
@@ -33,7 +33,7 @@ danmu-server
 #### Nodejs
  必须安装[Nodejs](https://nodejs.org/)。支持``node 4.0``以上版本。
 
- 强烈推荐使用最新版本Nodejs（截至写文档时，最新稳定版为``5.1.1``）。
+ 强烈推荐使用最新版本Nodejs（截至写文档时，最新稳定版为``5.5.4``）。
 
 #### 数据库
  如使用``csv``，可无视此节。
@@ -66,6 +66,10 @@ danmu-server
 ### DaoCloud安装
 在[DaoCloud](https://www.daocloud.io)下安装，如使用服务集成的MySQL的话，请根据``Dockerfile``内的提示手动删除``MariaDB``相关内容。不需要修改数据库信息，程序会自行检测。
 
+## 升级
+### 1.0.5 -> 1.0.6-pre
+* 在每个房间内增加hostname配置，类型为数组，用于将房间与域名绑定
+
 ## 网页接口
 
 ### GET /
@@ -87,6 +91,7 @@ danmu-server
 ```javascript
 	"rooms": {
 		"房间1": {
+			* "hostname": ["test.zsxsoft.com", "localhost", "127.0.0.1"], 
 			* "display": "房间显示名",
 			* "table": "对应MySQL的数据表、MongoDB的集合", 
 			"connectpassword": "客户端连接密码",
