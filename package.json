@@ -3,7 +3,10 @@
   "version": "1.0.6-pre",
   "license": "MIT",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js", 
+    "start-0.12": "node app-0.12.js",
+    "install-babel": "npm install babel-preset-es2015 babel-preset-stage-0 babel-polyfill", 
+    "compile": "babel ./lib/ --out-dir ./lib/ && babel app.js --out-dir ./"
   },
   "dependencies": {
     "async": "^2.0.0-rc.3",
@@ -42,6 +45,12 @@
   },
   "homepage": "https://github.com/zsxsoft/danmu-server#readme",
   "engines": {
-    "node": ">=4.0"
+    "node": ">=5.5"
+  }, 
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0"
+    ]
   }
 }

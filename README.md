@@ -33,10 +33,26 @@ danmu-server
 ### 检查环境
 
 #### Nodejs
- 必须安装[Nodejs](https://nodejs.org/)。支持``node 4.0``以上版本。
+ 必须安装[Nodejs](https://nodejs.org/)。强烈推荐使用最新版本Nodejs。
+##### 在Node 5.1+ / 6.x使用
+ 无需任何附加操作，直接使用``npm start``就可以启动。
+ 
+##### 在Node 4.x使用
+ 你需要先用babel编译后才能使用。
+ 
+ 首先，你需要安装babel-cli: ``npm install babel-cli -g``，接着进入本项目根目录下进行编译：
+ ```bash
+ npm run install-babel
+ npm run compile
+ npm install
+ ```
+ 
+ 编译后，即可``npm start``启动。
 
- 强烈推荐使用最新版本Nodejs（截至写文档时，最新稳定版为``5.5.4``）。
-
+##### 在Node 0.12使用
+  
+  先按照Node 4.0的方法进行编译，编译后使用``npm run start-0.12``启动。
+  
 #### 数据库
  如使用``csv``，可无视此节。
 
