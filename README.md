@@ -17,6 +17,7 @@ danmu-server
 - 扩展；
    - 新浪微博登录扩展（需要开启缓存）；
    - 自动封禁功能扩展（需要开启缓存）；
+   - 审核扩展；
 - 删除单条弹幕功能；
 - 易于部署，简单高效。
 
@@ -85,7 +86,7 @@ danmu-server
 在[DaoCloud](https://www.daocloud.io)下安装，如使用服务集成的MySQL的话，请根据``Dockerfile``内的提示手动删除``MariaDB``相关内容。不需要修改数据库信息，程序会自行检测。
 
 ## 升级
-### 1.0.5 -> 1.0.6-pre
+### 1.0.5 -> 1.0.6
 * 在每个房间内增加hostname配置，类型为数组，用于将房间与域名绑定
 
 ## 网页接口
@@ -185,20 +186,6 @@ danmu-server
 
 - [danmu-client](https://github.com/zsxsoft/danmu-client)
 
-## 负载测试
-
-此处测试已过时
-<del>
-    <p>测试命令：ab -n 6000 -c 1000 -v 4  -p "post.txt" -T "application/x-www-form-urlencoded" http://127.0.0.1:3000/post</p>
-    <p>环境：Linux 3.10.0-123.9.3.el7.x86_64 / Intel(R) Xeon(R) CPU E5-2630 @ 2.30GHz / 512MB / node v0.12.1 / mariadb-server.x86_64 1:5.5.41-2.el7_0 / 阿里云杭州机房D，一个客户端连接，OCS </p>
-    <p>默认配置，开启新浪微博登录，开启自动封禁。QPS 225.38 / 241.58</p>
-    <p>默认配置，关闭新浪微博登录，关闭自动封禁。QPS 461.97 / 431.51</p>
-    <p>默认配置，删除日志输出，关闭新浪微博登录，关闭自动封禁。QPS 720.89 / 812.66</p>
-
-    <p>环境：iojs v1.8.1</p>
-    <p>默认配置，开启新浪微博登录，开启自动封禁。QPS 444.42 / 536.25</p>
-    <p>默认配置，关闭新浪微博登录，关闭自动封禁。QPS 633.99 / 865.28</p>
-</del>
 ## 流程图
 
 ![流程图](http://zsxsoft.github.io/danmu-server/route.png)

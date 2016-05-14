@@ -99,14 +99,19 @@ module.exports = {
 		"authPassword": "" // 身份验证密码
 	},
 	"ext": {
-		/*"weibo": {
+		/*
+		"weibo": { // 新浪微博扩展
 			"clientID": '', // App ID
 			"clientSecret": '', // App Secret
 			"callbackURL": 'http://test.zsxsoft.com:3000/auth/sina/callback', // 这里填写的是 网站地址/auth/sina/callback
 			"requireState": true // 是否打开CSRF防御
-		},*/
-		"autoban": {
+		},
+		"autoban": { // 自动封号扩展
 			"block": 3, // 被拦截超过一定数字自动封号
-		}
+		}, 
+		"audit": { // 审核扩展
+			
+		},
+		*/
 	}
 };
