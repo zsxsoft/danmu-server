@@ -1,20 +1,16 @@
 // / <reference path="typings/main.d.ts" />
 'use strict'
-let os = require('os')
-let async = require('async')
-let listener = require('./lib/utils/event')
-let utils = require('./lib/utils')
-let packageJson = require('./package.json')
+const os = require('os')
+const async = require('async')
+const listener = require('./lib/utils/event')
+const log = require('./lib/utils/log')
+const packageJson = require('./package.json')
+
 let config = require('./config')
 
 global.version = packageJson.version
-global.log = {
-  log: function (text) {
-    console.log('[' + utils.getTime() + '] ' + text)
-  }
-};
 
-(() => {
+{
   log.log(`环境：${os.platform()}(${os.release()}) ${os.arch()} with ${parseInt(os.totalmem() / 1024 / 1024)}MB`)
 
   let dbPos = config.database
@@ -39,8 +35,9 @@ global.log = {
 // 加载模块
   async.map(['ext', 'cache', 'transfer', 'database', 'http', 'socket'], (mdl, callback) => {
     require(`./lib/${mdl}`).init(callback)
-  }, (err) => {
+  }, err => {
+    if (err) throw err
     listener.emit('configUpdated')
     log.log('服务器初始化完成')
   })
-})()
+}
