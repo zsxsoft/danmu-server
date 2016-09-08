@@ -68,116 +68,116 @@
 
     <script>
 var realtime = (function () {
-	var realtime = angular.module("danmu.audit", [
-		"ui.bootstrap",
-		"auditControllers"
-	]);
-	var auditControllers = angular.module('auditControllers', []);
-	var registerInit = []; // 用于初始化回调
-	var socket = null;
+var realtime = angular.module("danmu.audit", [
+"ui.bootstrap",
+"auditControllers"
+]);
+var auditControllers = angular.module('auditControllers', []);
+var registerInit = []; // 用于初始化回调
+var socket = null;
 
-	// alternatively, register the interceptor via an anonymous factory
+// alternatively, register the interceptor via an anonymous factory
 
-	realtime.config(['$httpProvider',
-		function ($httpProvider) {
-			$httpProvider.interceptors.push(function ($q, $rootScope) {
-				return {
-					'responseError': function (response) {
-						$rootScope.err.code = response.status;
-						$rootScope.err.desc = response.data.error;
-						$rootScope.haveError = true;
-						return $q.reject(response);
-					},
-					'response': function (response) {
-						$rootScope.err.code = response.status;
-						$rootScope.err.desc = "";
-						$rootScope.haveError = false;
-						return response;
-					}
-				};
-			});
-		}
-	]);
+realtime.config(['$httpProvider',
+function ($httpProvider) {
+$httpProvider.interceptors.push(function ($q, $rootScope) {
+return {
+'responseError': function (response) {
+$rootScope.err.code = response.status;
+$rootScope.err.desc = response.data.error;
+$rootScope.haveError = true;
+return $q.reject(response);
+},
+'response': function (response) {
+$rootScope.err.code = response.status;
+$rootScope.err.desc = "";
+$rootScope.haveError = false;
+return response;
+}
+};
+});
+}
+]);
 
-	auditControllers.controller("MainCtrl",
-		function ($scope, $http, $rootScope) {
-			$scope.accordion = {
-				openInfo: true,
-			};
-			$scope.isLogin = false;
-			$scope.connectToServer = false;
-			$scope.room = "";
-			$scope.password = "";
-			$scope.danmus = [];
-			$scope.config = null;
-			$rootScope.haveError = false;
-			$rootScope.err = {
-				code: 200,
-				desc: ""
-			};
+auditControllers.controller("MainCtrl",
+function ($scope, $http, $rootScope) {
+$scope.accordion = {
+openInfo: true,
+};
+$scope.isLogin = false;
+$scope.connectToServer = false;
+$scope.room = "";
+$scope.password = "";
+$scope.danmus = [];
+$scope.config = null;
+$rootScope.haveError = false;
+$rootScope.err = {
+code: 200,
+desc: ""
+};
 
-			$scope.initRoom = function (room) {
-				$scope.room = room;
-			};
-			$scope.enterRoom = function (password) {
-				$scope.password = password;
-				for (var object in registerInit) registerInit[object].call();
-				$scope.isLogin = true;
-				$scope.accordion.openInfo = false;
-			};
-			$scope.buildParam = function (object) {
-				object.room = $scope.room;
-				object.password = $scope.password;
-				return object;
-			};
-			$scope.passDanmu = function ($index, id, blockHash) {
+$scope.initRoom = function (room) {
+$scope.room = room;
+};
+$scope.enterRoom = function (password) {
+$scope.password = password;
+for (var object in registerInit) registerInit[object].call();
+$scope.isLogin = true;
+$scope.accordion.openInfo = false;
+};
+$scope.buildParam = function (object) {
+object.room = $scope.room;
+object.password = $scope.password;
+return object;
+};
+$scope.passDanmu = function ($index, id, blockHash) {
                 socket.emit("auditPass", {
                     room: $scope.room, 
                     id: id 
                 });
                 $scope.danmus.splice($index, 1);
-			};
-			$scope.deleteDanmu = function ($index, id, blockHash) {
-				socket.emit("auditFail", {
+};
+$scope.deleteDanmu = function ($index, id, blockHash) {
+socket.emit("auditFail", {
                     room: $scope.room, 
                     id: id, 
                     hash: blockHash, 
                 });
                 $scope.danmus.splice($index, 1);
-			};
+};
 
-			$http.post("/manage/room/get/", $scope.buildParam({})).success(function (data, status, headers, config) {
-				$scope.roomList = data;
-			});
-			registerInit.push(function () {
-				$http.post("/manage/config/password/get/", $scope.buildParam({})).success(function (data, status, headers, config) {
-					$scope.config = data;
-					socket = io(location.origin);
+$http.post("/manage/room/get/", $scope.buildParam({})).success(function (data, status, headers, config) {
+$scope.roomList = data;
+});
+registerInit.push(function () {
+$http.post("/manage/config/password/get/", $scope.buildParam({})).success(function (data, status, headers, config) {
+$scope.config = data;
+socket = io(location.origin);
                     socket.on("connect", function() {
                         socket.emit("auditLogin", {
                             password: $scope.config.connectpassword,
                             room: $scope.room
                         });
                     });
-					socket.on("auditConnected", function () {
+socket.on("auditConnected", function () {
                         $scope.danmus = [];
                         $scope.$apply();
-					});
-					socket.on("auditDanmu", function (data) {
+});
+socket.on("auditDanmu", function (data) {
                         for (key in data) {
                             var value = data[key];
                             value.id = key;
                             value.socketId = value.id + "-" + socket.id;
-							$scope.danmus.push(value);
+$scope.danmus.push(value);
                         }
-						$scope.$apply();
-					});
-				});
-			});
-		}
-	);
+$scope.$apply();
+});
+});
+});
+}
+);
 
-	return realtime;
+return realtime;
 })();
     </script>
 </body>

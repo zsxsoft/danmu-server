@@ -1,2 +1,2 @@
-require("babel-polyfill");
-require("./app");
+require('babel-polyfill')
+require('./app')

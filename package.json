@@ -3,9 +3,9 @@
   "version": "1.0.6",
   "license": "MIT",
   "scripts": {
-    "start": "node app.js", 
+    "start": "node app.js",
     "start-0.12": "node app-0.12.js",
-    "install-babel": "npm install babel-preset-es2015 babel-preset-stage-0 babel-polyfill", 
+    "install-babel": "npm install babel-preset-es2015 babel-preset-stage-0 babel-polyfill",
     "compile": "babel ./lib/ --out-dir ./lib/ && babel app.js --out-dir ./"
   },
   "dependencies": {
@@ -25,6 +25,11 @@
     "socket.io": "^1.4.5"
   },
   "devDependencies": {
+    "eslint": "^3.4.0",
+    "eslint-config-standard": "^6.0.0",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-standard": "^2.0.0",
     "grunt": "^1.0.1",
     "grunt-contrib-jshint": "^1.0.0"
   },
@@ -46,7 +51,7 @@
   "homepage": "https://github.com/zsxsoft/danmu-server#readme",
   "engines": {
     "node": ">=5.5"
-  }, 
+  },
   "babel": {
     "presets": [
       "es2015",
