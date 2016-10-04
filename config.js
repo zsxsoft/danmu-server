@@ -2,6 +2,7 @@ module.exports = {
 	"rooms": {
 		"default": {
 			"hostname": ["test.zsxsoft.com", "danmu.zsxsoft.com"], 
+			"cdn": false,
 			"display": "默认",
 			"table": "room_default", // 数据表
 			"connectpassword": "123456", // 客户端连接密码
@@ -36,6 +37,7 @@ module.exports = {
 		},
 		"unlimited": {
 			"hostname": ["127.0.0.1", "localhost"],
+			"cdn": false,
 			"display": "无限房间",
 			"table": "room_unlimited", // 数据表
 			"connectpassword": "", // 客户端连接密码

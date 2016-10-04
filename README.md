@@ -86,6 +86,8 @@ danmu-server
 在[DaoCloud](https://www.daocloud.io)下安装，如使用服务集成的MySQL的话，请根据``Dockerfile``内的提示手动删除``MariaDB``相关内容。不需要修改数据库信息，程序会自行检测。
 
 ## 升级
+### 1.0.6 -> 1.1.0
+* 在每个房间内增加cdn: false配置
 ### 1.0.5 -> 1.0.6
 * 在每个房间内增加hostname配置，类型为数组，用于将房间与域名绑定
 
@@ -111,6 +113,7 @@ danmu-server
 	"rooms": {
 		"房间1": {
 			* "hostname": ["test.zsxsoft.com", "localhost", "127.0.0.1"], 
+			* "cdn": 是否使用CDN或反向代理（用于获取正确的IP）,
 			* "display": "房间显示名",
 			* "table": "对应MySQL的数据表、MongoDB的集合", 
 			"connectpassword": "客户端连接密码",

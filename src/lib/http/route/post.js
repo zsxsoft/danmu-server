@@ -10,20 +10,16 @@ const permissions = ['color', 'style', 'height', 'lifeTime', 'textStyle', 'sourc
 
 module.exports = function (app) {
   app.post('/post', (req, res) => {
-// 请求合法性校验
-    req.body.hash = req.body.hash || ''
-    req.body.text = req.body.text || ''
-    req.body.type = req.body.type || ''
-    req.body.password = req.body.password || ''
+    const room = req.room
+    const roomConfig = config.rooms[room]
+    const ip = roomConfig.cdn ? req.ip : (req.get('X-Real-IP') || req.get('X-Forwarded-For') || req.ip)
+    const hash = utils.getHash(ip, req.headers['user-agent'], req.body.hash)
 
-// 计算用户唯一身份识别信息
-    let hash = utils.getHash(req.ip, req.headers['user-agent'], req.body.hash)
-    let room = req.room
     let danmuData = {
-      hash: hash,
-      room: room,
+      hash,
+      room,
       text: req.body.text,
-      ip: req.ip, // 如果使用CDN就要开启后面这东西  //req.get("X-Real-IP") || req.get("X-Forwarded-For") || req.ip,
+      ip,
       ua: req.headers['user-agent'],
       style: '',
       textStyle: '',
