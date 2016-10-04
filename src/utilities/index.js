@@ -37,7 +37,7 @@ const buildConfigToArray = room => {
 const parseLifeTime = data => {
   const imageMatches = data.text.match(config.rooms[data.room].image.regex)
   const imageLength = imageMatches === null ? 0 : imageMatches.length
-  return (Math.trunc(data.text.length / 10)) * 60 + config.rooms[data.room].image.lifetime * imageLength
+  return (Math.trunc(data.text.length / 10)) * 240 + config.rooms[data.room].image.lifetime * imageLength
 }
 // 全局工具
 module.exports = {

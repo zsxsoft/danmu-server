@@ -18,6 +18,7 @@ danmu-server
    - 新浪微博登录扩展（需要开启缓存）；
    - 自动封禁功能扩展（需要开启缓存）；
    - 审核扩展；
+   - 直播拉取扩展
 - 删除单条弹幕功能；
 - 易于部署，简单高效。
 
@@ -68,6 +69,7 @@ danmu-server
  默认使用``memcached``。如需使用，请检查[Memcached(Linux)](http://memcached.org/)的安装状态。``Windows``用户请自行查找适合的``Memcached``版本。
 
  如果要用[阿里云开放缓存服务OCS](http://www.aliyun.com/product/ocs/)，需要在安装完成后执行：``npm install aliyun-sdk``。
+
 
 ### 直接安装
  1. 配置MariaDB，创建数据库等，不需要创建数据表。
@@ -179,6 +181,46 @@ danmu-server
 }
 ```
 
+## 扩展
+### 新浪微博登录
+```javascript
+"weibo": { // 新浪微博扩展
+	"clientID": '', // App ID
+	"clientSecret": '', // App Secret
+	"callbackURL": 'http://test.zsxsoft.com:3000/auth/sina/callback', // 这里填写的是 网站地址/auth/sina/callback
+	"requireState": true // 是否打开CSRF防御
+}
+```
+
+### 自动封禁
+```javascript
+"autoban": { // 自动封号扩展
+	"block": 3, // 被拦截超过一定数字自动封号
+}
+```
+
+### 全局审核
+```javascript
+"audit": { // 审核扩展			
+}
+```
+
+### 直播同步
+
+此扩展基于[danmu](https://github.com/littlecodersh/danmu)项目开发，需要安装Python 2.7+ 或 Python 3.5+。在启用前，你首先需要
+```bash
+pip install danmu
+```
+
+才可打开。
+
+```javascript
+"livesync": { // 新浪微博扩展
+	"房间名": {
+		"liveUrl": '', // 直播网站地址
+	}
+}
+```
 ## 常见问题
 ### 数据库相关
 ``{ [Error: Connection lost: The server closed the connection.] fatal: true, code: 'PROTOCOL_CONNECTION_LOST' }``

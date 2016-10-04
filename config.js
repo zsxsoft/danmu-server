@@ -111,9 +111,14 @@ module.exports = {
 		"autoban": { // 自动封号扩展
 			"block": 3, // 被拦截超过一定数字自动封号
 		}, 
-		"audit": { // 审核扩展
+		/*"audit": { // 审核扩展
 			
-		},
+		},*/
+		"livesync": {
+			"unlimited": { // 房间名
+				"liveUrl": "http://live.bilibili.com/3" // 直播地址
+			}
+		}
 		
 	}
 };
