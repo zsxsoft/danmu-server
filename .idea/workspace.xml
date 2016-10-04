@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d81a5563-8403-47ae-a3c8-7d52a8a77d27" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gruntfile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/typings.json" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Dockerfile" afterPath="$PROJECT_DIR$/Dockerfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.js" afterPath="$PROJECT_DIR$/config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/cache/index.js" afterPath="$PROJECT_DIR$/lib/cache/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/events/Base.js" afterPath="$PROJECT_DIR$/lib/events/Base.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/ext/audit/index.js" afterPath="$PROJECT_DIR$/lib/ext/audit/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/ext/autoban/index.js" afterPath="$PROJECT_DIR$/lib/ext/autoban/index.js" />
     </list>
     <ignored path="danmu-server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,28 +56,28 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+            <state relative-caret-position="448">
+              <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/events/base.js">
+      <file leaf-file-name="Base.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/events/Base.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+            <state relative-caret-position="96">
+              <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/events/index.js">
+      <file leaf-file-name="config.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+            <state relative-caret-position="512">
+              <caret line="94" column="21" selection-start-line="94" selection-start-column="21" selection-end-line="94" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -88,12 +96,11 @@
         <option value="$PROJECT_DIR$/.eslintrc" />
         <option value="$PROJECT_DIR$/lib/events/index.js" />
         <option value="$PROJECT_DIR$/lib/events/base.js" />
+        <option value="$PROJECT_DIR$/config.js" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER">
-    <gruntfile path="$PROJECT_DIR$/gruntfile.js" />
-  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
     <package-json value="$PROJECT_DIR$/package.json" />
   </component>
@@ -219,15 +226,15 @@
       <updated>1473342475156</updated>
       <workItem from="1473342477044" duration="2860000" />
       <workItem from="1474613871631" duration="1568000" />
-      <workItem from="1475558838620" duration="1049000" />
+      <workItem from="1475558838620" duration="1556000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5477000" />
+    <option name="totallyTimeSpent" value="5984000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="2582" height="1402" extended-state="6" />
+    <frame x="-11" y="-11" width="2582" height="1402" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -290,7 +297,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/events/base.js">
+    <entry file="file://$PROJECT_DIR$/lib/events/Base.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -322,7 +329,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/events/base.js">
+    <entry file="file://$PROJECT_DIR$/lib/events/Base.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -363,8 +370,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+        <state relative-caret-position="448">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -377,10 +384,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/events/base.js">
+    <entry file="file://$PROJECT_DIR$/lib/events/Base.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+        <state relative-caret-position="96">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="94" column="21" selection-start-line="94" selection-start-column="21" selection-end-line="94" selection-end-column="21" />
           <folding />
         </state>
       </provider>

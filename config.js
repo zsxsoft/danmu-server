@@ -92,7 +92,7 @@ module.exports = {
 		"sessionKey": "hey"
 	},
 	"cache": {
-		"type": "memcached", // 缓存类型，支持memcached和aliyun。后者需要npm install aliyun-sdk
+		"type": "none", // 缓存类型，支持memcached和aliyun。后者需要npm install aliyun-sdk
 		"host": "127.0.0.1:11211", // 缓存服务器地址，可用socket
 		"auth": false, // 是否打开身份验证
 		"authUser": "", // 身份验证账号
@@ -109,9 +109,9 @@ module.exports = {
 		"autoban": { // 自动封号扩展
 			"block": 3, // 被拦截超过一定数字自动封号
 		}, 
-		/*"audit": { // 审核扩展
+		"audit": { // 审核扩展
 			
-		},*/
+		},
 		
 	}
 };
