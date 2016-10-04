@@ -4,6 +4,10 @@
     "browser": false,
     "node": true
   },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  },
   "plugins": [
     "babel"
   ],
