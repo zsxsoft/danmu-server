@@ -14,6 +14,8 @@ module.exports = function (app) {
     }).then(data => {
       log.log('搜索' + req.body.key + '成功')
       res.end(data)
+    }).catch(data => {
+      res.end(`[{"user": "ERROR", "text": "${JSON.parse(data.toString())}", "publish": ""}]`)
     })
   })
 }

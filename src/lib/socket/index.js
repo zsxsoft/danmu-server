@@ -11,7 +11,7 @@ let io = null
 module.exports = {
   init: function (callback) {
     // 删除弹幕
-    danmuEvent.del.listen(data => {
+    danmuEvent.removing.listen(data => {
       Object.keys(data).forEach(room => {
         io.to(room).emit('delete', data[room])
       })

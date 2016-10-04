@@ -2,6 +2,8 @@
 'use strict'
 const os = require('os')
 const async = require('async')
+const fs = require('fs')
+const path = require('path')
 const configEvent = require('./src/interfaces/Config')
 const log = require('./src/utils/log')
 const packageJson = require('./package.json')
@@ -38,6 +40,10 @@ global.Promise = require('bluebird')
     require(`./src/${mdl}`).init(callback)
   }, err => {
     if (err) throw err
+    fs.readdir(path.join(__dirname, './src/controllers'), (err, files) => {
+      err // eat it
+      files.forEach((filename) => require(path.join(__dirname, './src/controllers', filename)))
+    })
     configEvent.updated.emit()
     log.log('服务器初始化完成')
   })

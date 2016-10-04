@@ -18,16 +18,15 @@ class Base {
   }
   static registerCallbackable (className, fieldName) {
     const eventName = `${className}/${fieldName}`
+    console.log(eventName)
     if (callbackObject[eventName]) return callbackObject[eventName]
-    let callback = resolve => resolve()
+    let callback = () => new Promise((resolve, reject) => resolve(true))
     callbackObject[eventName] = {
       listen: fun => {
         callback = fun
       },
       wait: function () {
-        return new Promise((resolve, reject) => {
-          callback(resolve, ...arguments)
-        })
+        return callback(...arguments)
       }
     }
     return callbackObject[eventName]

@@ -1,7 +1,6 @@
 'use strict'
 const utils = require('../../../utils')
 const danmuEvent = require('../../../interfaces/Danmu')
-const danmuController = require('../../../controllers/DanmuController')
 
 let config = require('../../../../config')
 
@@ -33,7 +32,7 @@ module.exports = function (app) {
     }
 
     danmuEvent.httpReceived.wait(req, res, danmuData)
-    .then(() => danmuController.add(danmuData, req.body, {
+    .then(() => danmuEvent.addSingle.wait(danmuData, req.body, {
       password: req.body.password,
       isAdvanced: req.body.type === 'advanced'
     }))

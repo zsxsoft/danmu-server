@@ -120,7 +120,7 @@ module.exports = {
       })
     })
 
-    danmuEvent.search.listen((callback, data) => {
+    danmuEvent.search.listen((data) => new Promise((resolve, reject) => {
       let room = data.room
       connection.query('SELECT * from `%table%` where `danmu_text` LIKE ? LIMIT 20'.replace('%table%', config.rooms[room].table), [
         '%' + data.key + '%'
@@ -128,14 +128,14 @@ module.exports = {
         if (err === null) {
           let ret = []
           ret = JSON.stringify(rows).replace(/"danmu_/g, '"')
-          callback(ret)
+          resolve(ret)
         } else {
           log.log('数据库搜索出错')
           console.log(err)
-          callback('[]')
+          reject(err)
         }
       })
-    })
+    }))
 
     getConnection()
     setInterval(keepAlive, config.database.timeout)

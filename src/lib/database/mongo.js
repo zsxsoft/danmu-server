@@ -55,7 +55,7 @@ module.exports = {
       })
     })
 
-    danmuEvent.search.listen((callback, data) => {
+    danmuEvent.search.listen((data) => new Promise((resolve, reject) => {
       let room = data.room
       db.collection(config.rooms[room].table).find({
         text: {
@@ -66,14 +66,14 @@ module.exports = {
           results.map(function (object) {
             object.id = object._id
           })
-          callback(JSON.stringify(results))
+          resolve(JSON.stringify(results))
         } else {
           log.log('数据库搜索出错')
           console.error(err)
-          callback('[]')
+          reject(err)
         }
       })
-    })
+    }))
   }
 }
 

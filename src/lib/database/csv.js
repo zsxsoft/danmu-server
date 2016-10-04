@@ -27,7 +27,7 @@ module.exports.init = function (callback) {
     fs.appendFile(path.resolve(savePath, data.room + '.csv'), joinArray.join(','))
   })
 
-  danmuEvent.search.listen(callback => {
-    callback('[{"user": "ERROR", "text": "Not yet supported", "publish": ""}]')
-  })
+  danmuEvent.search.listen((data) => new Promise((resolve, reject) => {
+    resolve('[{"user": "ERROR", "text": "Not yet supported", "publish": ""}]')
+  }))
 }

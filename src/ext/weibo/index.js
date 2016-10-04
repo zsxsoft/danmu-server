@@ -132,12 +132,15 @@ module.exports = function () {
       })
     })
 
-    danmuEvent.httpReceived.listen((callback, req, res, danmuData) => {
-      req.getSina((err, data) => {
-        if (data && !err) {
-          danmuData.hash = data.nick
-        }
-        callback(null)
+    danmuEvent.httpReceived.listen((req, res, danmuData) => {
+      return new Promise((resolve, reject) => {
+        req.getSina((err, data) => {
+          if (data && !err) {
+            danmuData.hash = data.nick
+            return resolve(true)
+          }
+          reject(err)
+        })
       })
     })
 
