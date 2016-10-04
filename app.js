@@ -2,8 +2,8 @@
 'use strict'
 const os = require('os')
 const async = require('async')
-const configEvent = require('./lib/interfaces/Config')
-const log = require('./lib/utils/log')
+const configEvent = require('./src/interfaces/Config')
+const log = require('./src/utils/log')
 const packageJson = require('./package.json')
 
 let config = require('./config')
@@ -34,8 +34,8 @@ global.Promise = require('bluebird')
   }
 
 // 加载模块
-  async.map(['ext', 'cache', 'transfer', 'database', 'http', 'socket'], (mdl, callback) => {
-    require(`./lib/${mdl}`).init(callback)
+  async.map(['ext', 'lib/cache', 'lib/transfer', 'lib/database', 'lib/http', 'lib/socket'], (mdl, callback) => {
+    require(`./src/${mdl}`).init(callback)
   }, err => {
     if (err) throw err
     configEvent.updated.emit()
