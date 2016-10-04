@@ -7,7 +7,7 @@ const ban = register('ban')
 const transfer = register('transfer')
 const del = register('del')
 const get = register('get')
-const received = registerCallbackable('received')
+const httpReceived = registerCallbackable('httpReceived')
 const search = registerCallbackable('search')
 class Danmu extends Base {
   static get className () {
@@ -38,10 +38,10 @@ class Danmu extends Base {
     return get
   }
   /**
-   * 收到用户刚刚发送的弹幕
+   * 收到用户刚刚发送的弹幕（通过HTTP）
    **/
-  static get received () {
-    return received
+  static get httpReceived () {
+    return httpReceived
   }
   /**
    * 搜索弹幕

@@ -1,12 +1,11 @@
 'use strict'
 const utils = require('../../../utils')
 const danmuEvent = require('../../../interfaces/Danmu')
-const filter = require('../../../utils/filter')
-const log = require('../../../utils/log')
+const danmuController = require('../../../controllers/DanmuController')
+
 let config = require('../../../../config')
 
 // let _ = require('ramda');
-const permissions = ['color', 'style', 'height', 'lifeTime', 'textStyle', 'sourceCode'] // 为了不foreach
 
 module.exports = function (app) {
   app.post('/post', (req, res) => {
@@ -33,38 +32,12 @@ module.exports = function (app) {
       return res.end('弹幕不能为空')
     }
 
-// 等所有异步逻辑都执行完毕之后再进行下一步操作
-// 如果这里用setTimeout 0的话就方便很多了，但是在这种入口用红黑树，效率太低了
-    danmuEvent.received.wait(req, res, danmuData)
-    .then(() => {
-      let realFilter = filter(danmuData.room)
-      let isAdvanced = false
-      if (!config.rooms[room].permissions.send) {
-        return res.end('弹幕暂时被关闭')
-      }
-      if (req.body.type === 'advanced') {
-        if (req.body.password !== config.rooms[room].advancedpassword) {
-          return res.end('高级弹幕密码错误！')
-        }
-        isAdvanced = true
-      }
-      if (!isAdvanced && danmuData.text.length > config.rooms[room].textlength) {
-        return res.end('弹幕长度大于' + config.rooms[room].textlength + '个字，可能影响弹幕观感，请删减。')
-      }
-// 通过关键词和用户是否被屏蔽判断是否允许发送
-      if (realFilter.checkUserIsBlocked(danmuData.hash) || !realFilter.validateText(req.body.text)) {
-        log.log('拦截 ' + hash + ' - ' + req.body.text)
-        danmuEvent.ban.emit(danmuData)
-        return res.end('发送失败！\n请检查你发送的弹幕有无关键词，或确认自己未被封禁。')
-      }
-
-      permissions.forEach((val) => {
-        if (isAdvanced || config.rooms[room].permissions[val]) {
-          danmuData[val] = req.body[val] || ''
-        }
-      })
-      res.end('发送成功！')
-      danmuEvent.get.emit(danmuData)
-    })
+    danmuEvent.httpReceived.wait(req, res, danmuData)
+    .then(() => danmuController.add(danmuData, req.body, {
+      password: req.body.password,
+      isAdvanced: req.body.type === 'advanced'
+    }))
+    .then(() => res.end('发送成功！'))
+    .catch(e => res.end(e.toString()))
   })
 }

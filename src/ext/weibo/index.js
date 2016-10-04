@@ -132,7 +132,7 @@ module.exports = function () {
       })
     })
 
-    danmuEvent.get.listen((callback, req, res, danmuData) => {
+    danmuEvent.httpReceived.listen((callback, req, res, danmuData) => {
       req.getSina((err, data) => {
         if (data && !err) {
           danmuData.hash = data.nick
