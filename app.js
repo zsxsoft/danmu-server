@@ -2,7 +2,7 @@
 'use strict'
 const os = require('os')
 const async = require('async')
-const configEvent = require('./lib/events/Config')
+const configEvent = require('./lib/interfaces/Config')
 const log = require('./lib/utils/log')
 const packageJson = require('./package.json')
 
