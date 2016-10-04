@@ -9,6 +9,7 @@ const packageJson = require('./package.json')
 let config = require('./config')
 
 global.version = packageJson.version
+global.Promise = require('bluebird')
 
 {
   log.log(`环境：${os.platform()}(${os.release()}) ${os.arch()} with ${parseInt(os.totalmem() / 1024 / 1024)}MB`)
