@@ -1,6 +1,6 @@
 'use strict'
 const configEvent = require('../../../interfaces/Config')
-const log = require('../../../utils/log')
+const log = require('../../../utilities/log')
 let config = require('../../../../config')
 
 module.exports = function (app) {

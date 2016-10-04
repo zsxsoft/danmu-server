@@ -3,9 +3,9 @@
 'use strict'
 const configEvent = require('../../interfaces/Config')
 const danmuEvent = require('../../interfaces/Danmu')
-const filter = require('../../utils/filter')
-const log = require('../../utils/log')
-const cache = require('../../lib/cache')
+const filter = require('../../utilities/filter')
+const log = require('../../utilities/log')
+const cache = require('../../libraries/cache')
 
 let config = require('../../../config')
 

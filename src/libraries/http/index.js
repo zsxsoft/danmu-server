@@ -8,7 +8,7 @@ const path = require('path')
 const app = express()
 const bodyParser = require('body-parser')
 const httpEvent = require('../../interfaces/Http')
-const log = require('../../utils/log')
+const log = require('../../utilities/log')
 let config = require('../../../config')
 
 module.exports = {

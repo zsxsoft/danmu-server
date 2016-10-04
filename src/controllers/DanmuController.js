@@ -1,5 +1,5 @@
-const filter = require('../utils/filter')
-const log = require('../utils/log')
+const filter = require('../utilities/filter')
+const log = require('../utilities/log')
 const danmuEvent = require('../interfaces/Danmu')
 const configEvent = require('../interfaces/Config')
 

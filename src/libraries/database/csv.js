@@ -5,7 +5,7 @@
 const fs = require('fs')
 const path = require('path')
 const danmuEvent = require('../../interfaces/Danmu')
-const log = require('../../utils/log')
+const log = require('../../utilities/log')
 let config = require('../../../config')
 
 function formatContent (content) {

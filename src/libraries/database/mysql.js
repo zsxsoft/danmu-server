@@ -5,7 +5,7 @@ const SECONDS_IN_DAY = 24 * 60 * 60 * 1000
 const mysql = require('mysql')
 const async = require('async')
 const danmuEvent = require('../../interfaces/Danmu')
-const log = require('../../utils/log')
+const log = require('../../utilities/log')
 let config = require('../../../config')
 
 let pool = null

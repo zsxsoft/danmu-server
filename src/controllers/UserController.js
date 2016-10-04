@@ -1,5 +1,5 @@
 const configEvent = require('../interfaces/Config')
-const log = require('../utils/log')
+const log = require('../utilities/log')
 let config = require('../../config')
 
 configEvent.blockUser.listen((room, username) => {

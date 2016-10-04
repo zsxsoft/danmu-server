@@ -2,8 +2,8 @@
 
 'use strict'
 const configEvent = require('../../../interfaces/Config')
-const utils = require('../../../utils')
-const log = require('../../../utils/log')
+const utilities = require('../../../utilities')
+const log = require('../../../utilities/log')
 
 let config = require('../../../../config')
 
@@ -19,7 +19,7 @@ module.exports = function (app) {
     config.websocket.interval = req.body.socketinterval
     config.websocket.singlesize = req.body.socketsingle
 
-    let newConfig = JSON.stringify(utils.buildConfigToArray(room))
+    let newConfig = JSON.stringify(utilities.buildConfigToArray(room))
     log.log('收到配置信息：' + newConfig)
     configEvent.updated.emit()
     return res.end(newConfig)
@@ -58,7 +58,7 @@ module.exports = function (app) {
   app.post('/manage/config/get/', (req, res) => {
     let room = req.body.room || ''
     log.log('已将配置向管理页面下发')
-    return res.end(JSON.stringify(utils.buildConfigToArray(room)))
+    return res.end(JSON.stringify(utilities.buildConfigToArray(room)))
   })
 
   app.post('/manage/config/password/get/', (req, res) => {

@@ -1,7 +1,7 @@
 // / <reference path="../../typings/main.d.ts" />
 'use strict'
 const path = require('path')
-const log = require('../utils/log')
+const log = require('../utilities/log')
 let config = require('../../config')
 
 module.exports.init = function (callback) {

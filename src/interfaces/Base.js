@@ -18,7 +18,6 @@ class Base {
   }
   static registerCallbackable (className, fieldName) {
     const eventName = `${className}/${fieldName}`
-    console.log(eventName)
     if (callbackObject[eventName]) return callbackObject[eventName]
     let callback = () => new Promise((resolve, reject) => resolve(true))
     callbackObject[eventName] = {

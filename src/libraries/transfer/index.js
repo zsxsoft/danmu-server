@@ -3,9 +3,9 @@
 
 const configEvent = require('../../interfaces/Config')
 const danmuEvent = require('../../interfaces/Danmu')
-const filter = require('../../utils/filter')
-const log = require('../../utils/log')
-const utils = require('../../utils')
+const filter = require('../../utilities/filter')
+const log = require('../../utilities/log')
+const utilities = require('../../utilities')
 
 let danmuQueue = {}
 let danmuKeys = []
@@ -33,7 +33,7 @@ danmuEvent.get.listen(data => {
     danmuQueue[data.room].queue.shift()
   }
   if (data.lifeTime === '') {
-    data.lifeTime = utils.parseLifeTime(data)
+    data.lifeTime = utilities.parseLifeTime(data)
   }
   log.log(`房间${data.room}得到弹幕（${data.hash}）：${data.text}`)
   danmuQueue[data.room].queue.push(data)

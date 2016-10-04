@@ -5,7 +5,7 @@ const async = require('async')
 const fs = require('fs')
 const path = require('path')
 const configEvent = require('./src/interfaces/Config')
-const log = require('./src/utils/log')
+const log = require('./src/utilities/log')
 const packageJson = require('./package.json')
 
 let config = require('./config')
@@ -36,7 +36,7 @@ global.Promise = require('bluebird')
   }
 
 // 加载模块
-  async.map(['ext', 'lib/cache', 'lib/transfer', 'lib/database', 'lib/http', 'lib/socket'], (mdl, callback) => {
+  async.map(['extensions', 'libraries/cache', 'libraries/transfer', 'libraries/database', 'libraries/http', 'libraries/socket'], (mdl, callback) => {
     require(`./src/${mdl}`).init(callback)
   }, err => {
     if (err) throw err

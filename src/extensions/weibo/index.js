@@ -10,9 +10,9 @@ const fs = require('fs')
 const path = require('path')
 const httpEvent = require('../../interfaces/Http')
 const danmuEvent = require('../../interfaces/Danmu')
-const log = require('../../utils/log')
-const utils = require('../../utils')
-const cache = require('../../lib/cache')
+const log = require('../../utilities/log')
+const utilities = require('../../utilities')
+const cache = require('../../libraries/cache')
 
 let config = require('../../../config')
 
@@ -65,7 +65,7 @@ module.exports = function () {
           res.end("<meta charset='utf-8'><script>alert('系统错误，请重新登录，抱歉');location.href='/';</script>")
           return
         }
-        let hash = utils.getHash(data.profile.id, data.profile.name, data.profile.created_at)
+        let hash = utilities.getHash(data.profile.id, data.profile.name, data.profile.created_at)
         cache.cache().set('weibo_' + hash, JSON.stringify({
           accessToken: data.accessToken,
           name: data.profile.name,

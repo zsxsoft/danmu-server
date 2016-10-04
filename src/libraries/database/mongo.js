@@ -2,7 +2,7 @@
 
 const mongodb = require('mongodb')
 const danmuEvent = require('../../interfaces/Danmu')
-const log = require('../../utils/log')
+const log = require('../../utilities/log')
 let config = require('../../../config')
 let db = null
 

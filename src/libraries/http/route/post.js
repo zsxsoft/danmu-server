@@ -1,5 +1,5 @@
 'use strict'
-const utils = require('../../../utils')
+const utilities = require('../../../utilities')
 const danmuEvent = require('../../../interfaces/Danmu')
 
 let config = require('../../../../config')
@@ -11,7 +11,7 @@ module.exports = function (app) {
     const room = req.room
     const roomConfig = config.rooms[room]
     const ip = roomConfig.cdn ? req.ip : (req.get('X-Real-IP') || req.get('X-Forwarded-For') || req.ip)
-    const hash = utils.getHash(ip, req.headers['user-agent'], req.body.hash)
+    const hash = utilities.getHash(ip, req.headers['user-agent'], req.body.hash)
 
     let danmuData = {
       hash,

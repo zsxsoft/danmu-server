@@ -1,6 +1,6 @@
 // / <reference path="../../../typings/main.d.ts" />
 'use strict'
-const log = require('../../../utils/log')
+const log = require('../../../utilities/log')
 const danmuEvent = require('../../../interfaces/Danmu')
 
 module.exports = function (app) {

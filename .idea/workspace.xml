@@ -25,7 +25,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/http/route/post.js" afterPath="$PROJECT_DIR$/lib/http/route/post.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/socket/index.js" afterPath="$PROJECT_DIR$/lib/socket/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/transfer/index.js" afterPath="$PROJECT_DIR$/lib/transfer/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/utils/filter.js" afterPath="$PROJECT_DIR$/lib/utils/filter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/utilities/filter.js" afterPath="$PROJECT_DIR$/lib/utilities/filter.js" />
     </list>
     <ignored path="danmu-server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -107,7 +107,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/lib/http/route/manage.js" />
-        <option value="$PROJECT_DIR$/lib/utils/event.js" />
+        <option value="$PROJECT_DIR$/lib/utilities/event.js" />
         <option value="$PROJECT_DIR$/.eslintrc" />
         <option value="$PROJECT_DIR$/lib/interfaces/index.js" />
         <option value="$PROJECT_DIR$/lib/interfaces/base.js" />
@@ -410,7 +410,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/utils/event.js" />
+    <entry file="file://$PROJECT_DIR$/lib/utilities/event.js" />
     <entry file="file://$PROJECT_DIR$/.eslintrc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">

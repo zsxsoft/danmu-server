@@ -1,4 +1,4 @@
-const log = require('../../utils/log')
+const log = require('../../utilities/log')
 
 module.exports = {
   init: function (callback) {
