@@ -2,9 +2,13 @@ const filter = require('../utils/filter')
 const log = require('../utils/log')
 const danmuEvent = require('../interfaces/Danmu')
 const permissions = ['color', 'style', 'height', 'lifeTime', 'textStyle', 'sourceCode'] // 为了不foreach
+const userController = require('./UserController')
 let config = require('../../config')
 
 class DanmuController {
+  /**
+   * 新增一条弹幕
+   */
   static add (data, inputs = {}, extra = {
     password: '',
     isAdvanced: false
@@ -38,6 +42,20 @@ class DanmuController {
       resolve(true)
       danmuEvent.get.emit(data)
     })
+  }
+
+  /**
+   * 删除一条弹幕
+   */
+  static removeSingle (data, blockUser = false) {
+    let deleteObject = {}
+    deleteObject[data.room] = {
+      ids: [data.id],
+      hashs: [data.hash]
+    }
+    danmuEvent.del.emit(deleteObject)
+    if (blockUser) userController.block(data.room, data.hash)
+    log.log(`删除弹幕 ${data.id} 成功`)
   }
 }
 module.exports = DanmuController
