@@ -2,7 +2,7 @@
 'use strict'
 const os = require('os')
 const async = require('async')
-const listener = require('./lib/utils/event')
+const configEvent = require('./lib/events/Config')
 const log = require('./lib/utils/log')
 const packageJson = require('./package.json')
 
@@ -37,7 +37,7 @@ global.version = packageJson.version
     require(`./lib/${mdl}`).init(callback)
   }, err => {
     if (err) throw err
-    listener.emit('configUpdated')
+    configEvent.updated.emit()
     log.log('服务器初始化完成')
   })
 }
