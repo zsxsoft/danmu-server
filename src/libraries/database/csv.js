@@ -24,7 +24,9 @@ module.exports.init = function (callback) {
     joinArray.push(formatContent(data.ua))
     joinArray.push(formatContent(data.text))
     joinArray.push('\r\n')
-    fs.appendFile(path.resolve(savePath, data.room + '.csv'), joinArray.join(','))
+    fs.appendFile(path.resolve(savePath, data.room + '.csv'), joinArray.join(','), err => {
+      err // Do nothing here
+    })
   })
 
   danmuEvent.search.listen((data) => new Promise((resolve, reject) => {
