@@ -61,7 +61,8 @@ Nodejs >= 6
 
 ### Docker安装
 
-直接用``Docker``安装的话，镜像内是含``MariaDB``的。如果不需要，请根据``Dockerfile``内的提示手动删除。
+__Dockerfile可能年久失修，建议自己用``alpine``封装一个。__
+直接用``Docker``安装的话，镜像内是含``MariaDB``的。
  1. [安装Docker](http://yeasy.gitbooks.io/docker_practice/content/install/index.html)。
  2. ``config.js``调整配置。
  3. ``docker build -t="zsxsoft/danmu-server:" . && docker run -t -i -p 3000:3000 "zsxsoft/danmu-server"``
@@ -225,4 +226,4 @@ The MIT License (MIT)
 [弹幕服务器及搭配之透明弹幕客户端研究开题报告](http://blog.zsxsoft.com/post/13)
 
 ## 开发者
-zsx - http://www.zsxsoft.com / 博客 - http://blog.zsxsoft.com
+zsx - https://www.zsxsoft.com / 博客 - https://blog.zsxsoft.com
