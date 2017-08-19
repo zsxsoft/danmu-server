@@ -1,19 +1,16 @@
-// / <reference path="../../typings/main.d.ts" />
-
-'use strict'
 const SECONDS_IN_DAY = 24 * 60 * 60 * 1000
 const mysql = require('mysql')
 const async = require('async')
 const danmuEvent = require('../../interfaces/Danmu')
 const log = require('../../utilities/log')
-let config = require('../../../config')
+const config = require('../../../config')
 
 let pool = null
 let connection = null
 let errorCounter = 0
 let firstErrorTime = new Date()
 
-let createTableSql = [
+const createTableSql = [
   'CREATE TABLE IF NOT EXISTS `%table%` (',
   'danmu_id int(11) NOT NULL AUTO_INCREMENT,',
   "danmu_user varchar(255) NOT NULL DEFAULT '',",
@@ -26,8 +23,8 @@ let createTableSql = [
   ') ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;'
 ].join('\n')
 
-let createDatabase = function (callbackOrig) {
-  let asyncList = Object.keys(config.rooms)
+const createDatabase = function (callbackOrig) {
+  const asyncList = Object.keys(config.rooms)
   async.each(asyncList, (room, callback) => {
     connection.query('SELECT MAX(danmu_id) FROM `' + config.rooms[room].table + '`', function (err, rows) {
       if (err !== null) {
@@ -44,7 +41,7 @@ let createDatabase = function (callbackOrig) {
   })
 }
 
-let dbErrorHandler = function (err) {
+const dbErrorHandler = function (err) {
   if (err !== null) {
     if (err.errno !== 'ECONNRESET') { // 部分MySQL会自动超时，此时要重连但不计errorCounter
       if (errorCounter === 0 || new Date() - firstErrorTime >= SECONDS_IN_DAY) {
@@ -66,7 +63,7 @@ let dbErrorHandler = function (err) {
   }
 }
 
-let getConnection = function (callback) {
+const getConnection = function (callback) {
   let called = false
   pool.getConnection((err, privateConnection) => {
     connection = privateConnection
@@ -99,7 +96,7 @@ module.exports = {
       database: config.database.db,
       acquireTimeout: config.database.timeout,
       connectionLimit: 1
-                // debug: true
+      // debug: true
     })
     getConnection(callback)
 
@@ -139,7 +136,7 @@ module.exports = {
 
     getConnection()
     setInterval(keepAlive, config.database.timeout)
-        //        connection.on("error", dbErrorHandler);
-        //       connectDataBase(callback);
+    //        connection.on("error", dbErrorHandler);
+    //       connectDataBase(callback);
   }
 }

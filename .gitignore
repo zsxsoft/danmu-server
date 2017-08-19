@@ -1,3 +1,6 @@
+.vs
+.idea
+.vscode
 *.csv
 
 # Logs

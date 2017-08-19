@@ -1,7 +1,6 @@
-'use strict'
 const configEvent = require('../../../interfaces/Config')
 const log = require('../../../utilities/log')
-let config = require('../../../../config')
+const config = require('../../../../config')
 
 module.exports = function (app) {
   app.post('/manage/block/add/', (req, res) => {

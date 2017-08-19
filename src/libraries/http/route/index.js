@@ -1,10 +1,8 @@
-// / <reference path="../../../typings/main.d.ts" />
-'use strict'
-let config = require('../../../../config')
+const config = require('../../../../config')
 
 module.exports = function (app) {
 // Initialize Hostname Map
-  let hostnameMap = new Map()
+  const hostnameMap = new Map()
   Object.keys(config.rooms).forEach(room => config.rooms[room].hostname.forEach(value => hostnameMap.set(value, room)))
 
   function getRoom (hostname) {
@@ -12,7 +10,7 @@ module.exports = function (app) {
   }
 
   function renderIndex (advanced, room) {
-    let permission = config.rooms[room].permissions
+    const permission = config.rooms[room].permissions
     return {
       config,
       advanced,

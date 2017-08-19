@@ -1,9 +1,7 @@
-// / <reference path="../../typings/main.d.ts" />
-
 const mongodb = require('mongodb')
 const danmuEvent = require('../../interfaces/Danmu')
 const log = require('../../utilities/log')
-let config = require('../../../config')
+const config = require('../../../config')
 let db = null
 
 const server = new mongodb.Server(config.database.server, config.database.port, {
@@ -32,7 +30,7 @@ const getConnection = function (callback) {
     callback.apply(callback, arguments)
     log.log('数据库连接成功')
   })
-    // callback(null);
+  // callback(null);
 }
 
 module.exports = {
@@ -78,19 +76,19 @@ module.exports = {
 }
 
 function pregQuote (str, delimiter) {
-    //  discuss at: http://phpjs.org/functions/preg_quote/
-    // original by: booeyOH
-    // improved by: Ates Goral (http://magnetiq.com)
-    // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // improved by: Brett Zamir (http://brett-zamir.me)
-    // bugfixed by: Onno Marsman
-    //   example 1: preg_quote("$40");
-    //   returns 1: '\\$40'
-    //   example 2: preg_quote("*RRRING* Hello?");
-    //   returns 2: '\\*RRRING\\* Hello\\?'
-    //   example 3: preg_quote("\\.+*?[^]$(){}=!<>|:");
-    //   returns 3: '\\\\\\.\\+\\*\\?\\[\\^\\]\\$\\(\\)\\{\\}\\=\\!\\<\\>\\|\\:'
+  //  discuss at: http://phpjs.org/functions/preg_quote/
+  // original by: booeyOH
+  // improved by: Ates Goral (http://magnetiq.com)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Onno Marsman
+  //   example 1: preg_quote("$40");
+  //   returns 1: '\\$40'
+  //   example 2: preg_quote("*RRRING* Hello?");
+  //   returns 2: '\\*RRRING\\* Hello\\?'
+  //   example 3: preg_quote("\\.+*?[^]$(){}=!<>|:");
+  //   returns 3: '\\\\\\.\\+\\*\\?\\[\\^\\]\\$\\(\\)\\{\\}\\=\\!\\<\\>\\|\\:'
 
   return String(str)
-        .replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\' + (delimiter || '') + '-]', 'g'), '\\$&')
+    .replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\' + (delimiter || '') + '-]', 'g'), '\\$&')
 }

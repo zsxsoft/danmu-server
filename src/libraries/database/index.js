@@ -1,6 +1,4 @@
-// / <reference path="../../typings/main.d.ts" />
-'use strict'
-let config = require('../../../config')
+const config = require('../../../config')
 
 module.exports = {
   init: function (callback) {

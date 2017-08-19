@@ -1,8 +1,6 @@
-// / <reference path="../../typings/main.d.ts" />
-'use strict'
 const configEvent = require('../interfaces/Config')
 const _ = require('ramda')
-let config = require('../../config')
+const config = require('../../config')
 
 const cachedFilters = {}
 /**
@@ -22,9 +20,7 @@ const validateText = _.curry((ignoreRegEx, checkRegEx, str) => {
 /**
  * 替换关键字
  */
-const replaceKeyword = _.curry((regex, str) => {
-  return str.replace(regex, '***')
-})
+const replaceKeyword = _.curry((regex, str) => str.replace(regex, '***'))
 
 function initialize (roomName, forceUpdate) {
   if (cachedFilters[roomName] && !forceUpdate) {

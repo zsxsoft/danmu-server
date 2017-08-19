@@ -18,7 +18,7 @@ configEvent.unblockUser.listen((room, username) => {
       resolve()
     } else {
       log.log(`黑名单中未搜索到${username}`)
-      reject()
+      reject(new Error(username))
     }
   })
 })

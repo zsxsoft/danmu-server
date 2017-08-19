@@ -26,14 +26,14 @@ passport.deserializeUser(function (obj, callback) {
 });
 */
 Passport.use(new PassportSina(config.ext.weibo,
-    function (accessToken, refreshToken, profile, callback) {
-      process.nextTick(function () {
-        return callback(null, {
-          accessToken: accessToken,
-          profile: profile
-        })
+  function (accessToken, refreshToken, profile, callback) {
+    process.nextTick(function () {
+      return callback(null, {
+        accessToken: accessToken,
+        profile: profile
       })
-    }))
+    })
+  }))
 
 module.exports = function () {
   httpEvent.beforeRoute.listen(app => {
@@ -42,7 +42,7 @@ module.exports = function () {
       resave: false,
       saveUninitialized: true,
       cookie: {
-        maxAge: 24 * 60 * 60 * 1000  // 1 day
+        maxAge: 24 * 60 * 60 * 1000 // 1 day
       }
     }))
     app.use(Passport.initialize())
@@ -72,7 +72,7 @@ module.exports = function () {
           id: data.profile.id,
           nick: data.profile.screen_name
         }), 24 * 60 * 60, (err, data) => {
-          err
+          err // eslint-disable-line no-unused-expressions
           // Do nothing
           // eat it
         })
@@ -84,7 +84,7 @@ module.exports = function () {
       })(req, res, next)
     })
     app.use(function (req, res, next) {
-            // 这里用来给req添加函数
+      // 这里用来给req添加函数
       req.getSina = function (callback) {
         if (typeof req.cookies.weibo !== 'undefined') {
           cache.cache().get('weibo_' + req.cookies.weibo, function (err, data) {
@@ -103,7 +103,7 @@ module.exports = function () {
       next()
     })
 
-        // 未登录时直接跳转到新浪微博
+    // 未登录时直接跳转到新浪微博
     app.get('/', (req, res, next) => {
       async.waterfall([
         function (callback) {
@@ -112,7 +112,7 @@ module.exports = function () {
         function (data, callback) {
           if (data === false) {
             fs.readFile(path.join(__dirname, './login.html'), function (err, data) {
-              err // eat error
+              err // eslint-disable-line no-unused-expressions
               res.end(data)
             })
           } else {

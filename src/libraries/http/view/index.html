@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--懒得写CSS和一堆JS了，麻烦~-->
-<html lang="zh-cn">
+<html lang="zh-cmn-CN">
 
 <head>
     <meta charset="utf-8">
@@ -15,12 +15,12 @@
     body {
         padding-top: 50px;
     }
-    
+
     .starter-template {
         padding: 40px 15px;
         text-align: center;
     }
-    
+
     .danmu-advanced {
         display: <%=advanced ? "block": "none"%>;
     }
@@ -161,7 +161,7 @@
                 }
                 return o;
             }
-            
+
             // In some modes, localStorage cannot be used.
             try {
                 danmuHash = localStorage.getItem("danmuHash");

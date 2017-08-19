@@ -1,11 +1,8 @@
-// / <reference path="../../typings/main.d.ts" />
-
-'use strict'
 const httpEvent = require('../../interfaces/Http')
 const socketEvent = require('../../interfaces/Socket')
 const danmuEvent = require('../../interfaces/Danmu')
 const log = require('../../utilities/log')
-let config = require('../../../config')
+const config = require('../../../config')
 let inProcessRandomNumber = Math.random()
 let io = null
 module.exports = {

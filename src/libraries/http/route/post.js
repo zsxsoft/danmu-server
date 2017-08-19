@@ -1,10 +1,6 @@
-'use strict'
 const utilities = require('../../../utilities')
 const danmuEvent = require('../../../interfaces/Danmu')
-
-let config = require('../../../../config')
-
-// let _ = require('ramda');
+const config = require('../../../../config')
 
 module.exports = function (app) {
   app.post('/post', (req, res) => {
@@ -13,7 +9,7 @@ module.exports = function (app) {
     const ip = roomConfig.cdn ? req.ip : (req.get('X-Real-IP') || req.get('X-Forwarded-For') || req.ip)
     const hash = utilities.getHash(ip, req.headers['user-agent'], req.body.hash)
 
-    let danmuData = {
+    const danmuData = {
       hash,
       room,
       text: req.body.text,
@@ -32,11 +28,11 @@ module.exports = function (app) {
     }
 
     danmuEvent.httpReceived.wait(req, res, danmuData)
-    .then(() => danmuEvent.addSingle.wait(danmuData, req.body, {
-      password: req.body.password,
-      isAdvanced: req.body.type === 'advanced'
-    }))
-    .then(() => res.end('发送成功！'))
-    .catch(e => res.end(e.toString()))
+      .then(() => danmuEvent.addSingle.wait(danmuData, req.body, {
+        password: req.body.password,
+        isAdvanced: req.body.type === 'advanced'
+      }))
+      .then(() => res.end('发送成功！'))
+      .catch(e => res.end(e.toString()))
   })
 }

@@ -24,8 +24,8 @@ class Base {
       listen: fun => {
         callback = fun
       },
-      wait: function () {
-        return callback(...arguments)
+      wait: function (...args) {
+        return callback(...args) // eslint-disable-line standard/no-callback-literal
       }
     }
     return callbackObject[eventName]

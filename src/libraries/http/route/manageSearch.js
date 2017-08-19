@@ -1,11 +1,9 @@
-// / <reference path="../../../typings/main.d.ts" />
-'use strict'
 const log = require('../../../utilities/log')
 const danmuEvent = require('../../../interfaces/Danmu')
 
 module.exports = function (app) {
   app.post('/manage/search', function (req, res) {
-    let room = req.body.room
+    const room = req.body.room
 
     log.log('尝试搜索' + req.body.key)
     danmuEvent.search.wait({

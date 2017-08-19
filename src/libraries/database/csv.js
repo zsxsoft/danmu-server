@@ -1,12 +1,8 @@
-// / <reference path="../../typings/main.d.ts" />
-
-'use strict'
-
 const fs = require('fs')
 const path = require('path')
 const danmuEvent = require('../../interfaces/Danmu')
 const log = require('../../utilities/log')
-let config = require('../../../config')
+const config = require('../../../config')
 
 function formatContent (content) {
   return '"' + content.toString().replace(/"/g, '""') + '"'
@@ -25,7 +21,7 @@ module.exports.init = function (callback) {
     joinArray.push(formatContent(data.text))
     joinArray.push('\r\n')
     fs.appendFile(path.resolve(savePath, data.room + '.csv'), joinArray.join(','), err => {
-      err // Do nothing here
+      log.log(err)
     })
   })
 

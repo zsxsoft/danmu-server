@@ -1,4 +1,3 @@
-// / <reference path="../../typings/main.d.ts" />
 'use strict'
 const crypto = require('crypto')
 const config = require('../../config')

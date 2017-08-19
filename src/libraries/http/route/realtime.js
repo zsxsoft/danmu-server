@@ -1,11 +1,10 @@
-'use strict'
-let config = require('../../../../config')
+const config = require('../../../../config')
 
 module.exports = function (app) {
   app.get('/realtime', (req, res) => {
     res.render('realtime', {
-      config: config,
-      version: version // eslint-disable-line
+      config,
+      version: global.version
     })
   })
 }

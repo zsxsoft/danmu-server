@@ -1,8 +1,7 @@
-// / <reference path="../../typings/main.d.ts" />
 'use strict'
-var cache = null
-let config = require('../../../config')
-let memoryCacheMap = new Map()
+let cache = null
+const config = require('../../../config')
+const memoryCacheMap = new Map()
 
 module.exports = {
   init: function (callback) {
@@ -11,9 +10,9 @@ module.exports = {
         cache = new (require('memcached'))(config.cache.host)
         break
       case 'aliyun':
-        let ALY = require('aliyun-sdk')
-        let PORT = config.cache.host.split(':')[1]
-        let HOST = config.cache.host.split(':')[0]
+        const ALY = require('aliyun-sdk')
+        const PORT = config.cache.host.split(':')[1]
+        const HOST = config.cache.host.split(':')[0]
         cache = ALY.MEMCACHED.createClient(PORT, HOST, {
           username: config.cache.authUser,
           password: config.cache.authPassword
@@ -36,4 +35,3 @@ module.exports = {
 module.exports.cache = () => {
   return cache
 }
-

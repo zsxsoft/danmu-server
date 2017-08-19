@@ -1,5 +1,3 @@
-// / <reference path="typings/main.d.ts" />
-'use strict'
 const os = require('os')
 const async = require('async')
 const fs = require('fs')
@@ -36,13 +34,13 @@ global.Promise = require('bluebird')
     console.log('检测到配置在环境变量内的MongoDB，自动使用之。')
   }
 
-// 加载模块
+  // 加载模块
   async.map(['extensions', 'libraries/cache', 'libraries/transfer', 'libraries/database', 'libraries/http', 'libraries/socket'], (mdl, callback) => {
     require(`./src/${mdl}`).init(callback)
   }, err => {
     if (err) throw err
     fs.readdir(path.join(__dirname, './src/controllers'), (err, files) => {
-      err // eat it
+      if (err) throw err
       files.forEach((filename) => require(path.join(__dirname, './src/controllers', filename)))
     })
     configEvent.updated.emit()

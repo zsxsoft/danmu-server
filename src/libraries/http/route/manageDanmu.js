@@ -1,9 +1,8 @@
-'use strict'
 const danmuEvent = require('../../../interfaces/Danmu')
 
 module.exports = function (app) {
   app.post('/manage/danmu/delete/', (req, res) => {
-    let data = {}
+    const data = {}
     data.hash = req.body.hash || ''
     data.id = req.body.id || 0
     data.room = req.body.room || ''

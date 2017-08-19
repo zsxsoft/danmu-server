@@ -55,11 +55,11 @@ function Audit () {
     let danmuKeys = Object.keys(config.rooms)
 
     app.get('/audit', (req, res, next) => fs.readFile(path.join(__dirname, './audit.html'), (err, data) => {
-      err
+      if (err) throw err
       res.end(data)
     }))
 
-        // Remove all listeners to gotDanmu and bind to a new listener.
+    // Remove all listeners to gotDanmu and bind to a new listener.
     const danmuEvents = danmuEvent.get.listeners()
     danmuEvent.get.removeAllListeners()
     danmuEvents.forEach(event => auditEvent.passed.listen(event))

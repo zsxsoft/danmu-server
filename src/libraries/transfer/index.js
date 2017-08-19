@@ -1,6 +1,3 @@
-// / <reference path="../../typings/main.d.ts" />
-'use strict'
-
 const configEvent = require('../../interfaces/Config')
 const danmuEvent = require('../../interfaces/Danmu')
 const filter = require('../../utilities/filter')
@@ -9,7 +6,7 @@ const utilities = require('../../utilities')
 
 let danmuQueue = {}
 let danmuKeys = []
-let config = require('../../../config')
+const config = require('../../../config')
 
 let danmuId = 0
 

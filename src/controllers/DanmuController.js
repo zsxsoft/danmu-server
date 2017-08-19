@@ -15,20 +15,20 @@ danmuEvent.addSingle.listen((data, inputs = {}, extra = {
     const roomConfig = config.rooms[room]
     const realFilter = filter(room)
     if (!roomConfig.permissions.send) {
-      return reject('弹幕暂时被关闭')
+      return reject(new Error('弹幕暂时被关闭'))
     }
     if (extra.isAdvanced) {
       if (extra.password !== roomConfig.advancedpassword) {
-        return reject('高级弹幕密码错误！')
+        return reject(new Error('高级弹幕密码错误！'))
       }
     }
     if (!extra.isAdvanced && data.text.length > roomConfig.textlength) {
-      return reject(`弹幕长度大于${roomConfig.textlength}个字，可能影响弹幕观感，请删减。`)
+      return reject(new Error(`弹幕长度大于${roomConfig.textlength}个字，可能影响弹幕观感，请删减。`))
     }
     if (realFilter.checkUserIsBlocked(data.hash) || !realFilter.validateText(data.text)) {
       log.log(`拦截 ${data.hash} - ${data.text}`)
       danmuEvent.ban.emit(data)
-      return reject('发送失败！\n请检查你发送的弹幕有无关键词，或确认自己未被封禁。')
+      return reject(new Error('发送失败！\n请检查你发送的弹幕有无关键词，或确认自己未被封禁。'))
     }
 
     permissions.forEach((val) => {

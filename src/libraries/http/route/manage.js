@@ -1,5 +1,4 @@
-'use strict'
-let config = require('../../../../config')
+const config = require('../../../../config')
 
 module.exports = function (app) {
   app.get('/manage', function (req, res) {
@@ -8,10 +7,10 @@ module.exports = function (app) {
     })
   })
 
-// 总身份验证
+  // 总身份验证
   app.post('/manage/*', (req, res, next) => {
     if (/room\/get/.test(req.url)) {
-// 如果是房间下发则不验证身份
+      // 如果是房间下发则不验证身份
       return next()
     }
     let room = req.body.room
