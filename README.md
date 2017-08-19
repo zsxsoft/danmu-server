@@ -35,26 +35,9 @@ danmu-server
 ### 检查环境
 
 #### Nodejs
- 必须安装[Nodejs](https://nodejs.org/)。强烈推荐使用最新版本Nodejs。
-##### 在Node 5.1+ / 6.x使用
- 无需任何附加操作，直接使用``npm start``就可以启动。
- 
-##### 在Node 4.x使用
- 你需要先用babel编译后才能使用。
- 
- 首先，你需要安装babel-cli: ``npm install babel-cli -g``，接着进入本项目根目录下进行编译：
- ```bash
- npm run install-babel
- npm run compile
- npm install
- ```
- 
- 编译后，即可``npm start``启动。
 
-##### 在Node 0.12使用
-  
-  先按照Node 4.0的方法进行编译，编译后使用``npm run start-0.12``启动。
-  
+Nodejs >= 6
+
 #### 数据库
  如使用``csv``，可无视此节。
 
@@ -70,7 +53,6 @@ danmu-server
 
  如果要用[阿里云开放缓存服务OCS](http://www.aliyun.com/product/ocs/)，需要在安装完成后执行：``npm install aliyun-sdk``。
 
-
 ### 直接安装
  1. 配置MariaDB，创建数据库等，不需要创建数据表。
  2. 修改``config.js``，使其参数与环境相符。
@@ -83,9 +65,6 @@ danmu-server
  1. [安装Docker](http://yeasy.gitbooks.io/docker_practice/content/install/index.html)。
  2. ``config.js``调整配置。
  3. ``docker build -t="zsxsoft/danmu-server:" . && docker run -t -i -p 3000:3000 "zsxsoft/danmu-server"``
-
-### DaoCloud安装
-在[DaoCloud](https://www.daocloud.io)下安装，如使用服务集成的MySQL的话，请根据``Dockerfile``内的提示手动删除``MariaDB``相关内容。不需要修改数据库信息，程序会自行检测。
 
 ## 升级
 ### 1.0.6 -> 1.1.0
@@ -114,13 +93,13 @@ danmu-server
 ```javascript
 	"rooms": {
 		"房间1": {
-			* "hostname": ["test.zsxsoft.com", "localhost", "127.0.0.1"], 
+			* "hostname": ["test.zsxsoft.com", "localhost", "127.0.0.1"],
 			* "cdn": 是否使用CDN或反向代理（用于获取正确的IP）,
 			* "display": "房间显示名",
-			* "table": "对应MySQL的数据表、MongoDB的集合", 
+			* "table": "对应MySQL的数据表、MongoDB的集合",
 			"connectpassword": "客户端连接密码",
 			"managepassword": "管理密码",
-			"advancedpassword": "高级弹幕密码",  
+			"advancedpassword": "高级弹幕密码",
 			"keyword": {
 				"block": /强制屏蔽关键词，正则格式。/
 				"replacement": /替换关键词，正则格式/,
@@ -129,19 +108,19 @@ danmu-server
 			"blockusers": [
 				"默认封禁用户列表"
 			],
-			"maxlength": 弹幕堆积队列最大长度, 
-			"textlength": 每条弹幕最大长度, 
+			"maxlength": 弹幕堆积队列最大长度,
+			"textlength": 每条弹幕最大长度,
 			* "image": {
 				* "regex": /图片弹幕解析正则，正则格式，不要修改/ig,
-				* "lifetime": 每个图片给每条弹幕增加的存货时间 
+				* "lifetime": 每个图片给每条弹幕增加的存货时间
 			},
 			"permissions": { // 普通用户允许的弹幕权限
-				"send": 弹幕开关；关闭后无论普通用户还是高级权限都完全禁止弹幕。, 
-				"style": 弹幕样式开关, 
-				"color": 颜色开关, 
-				"textStyle": CSS开关, 
-				"height": 高度开关, 
-				"lifeTime": 显示时间开关, 
+				"send": 弹幕开关；关闭后无论普通用户还是高级权限都完全禁止弹幕。,
+				"style": 弹幕样式开关,
+				"color": 颜色开关,
+				"textStyle": CSS开关,
+				"height": 高度开关,
+				"lifeTime": 显示时间开关,
 			}
 		},
 		"房间ID2": {
@@ -154,9 +133,9 @@ danmu-server
 		* "username": "数据库用户名（mysql / mongo）",
 		* "password": "数据库密码（mysql / mongo）",
 		* "port": "数据库端口（mysql / mongo）",
-		* "db": "数据库（mysql / mongo）", 
+		* "db": "数据库（mysql / mongo）",
 		* "retry": 24小时允许断线重连最大次数，超过则自动退出程序。24小时以第一次断线时间计。（mysql）,
-		* "timeout": 数据库重连延时及Ping（mysql）, 
+		* "timeout": 数据库重连延时及Ping（mysql）,
 		* "savedir": "指定文件保存位置（csv）",
 	},
 	"websocket": {
@@ -164,14 +143,14 @@ danmu-server
 		"singlesize": 每次弹幕发送数量
 	},
 	* "http": {
-		* "port": 服务器HTTP端口, 
+		* "port": 服务器HTTP端口,
 		* "headers": {}, // HTTP头
 		* "sessionKey": "随便写点，防冲突的"
 	},
 	* "cache": {
-		* "type": "缓存类型（memcached / aliyun）", 
-		* "host": "缓存服务器地址，可用socket", 
-		* "auth": 打开身份验证,  
+		* "type": "缓存类型（memcached / aliyun）",
+		* "host": "缓存服务器地址，可用socket",
+		* "auth": 打开身份验证,
 		* "authUser": 身份验证账号,
 		* "authPassword": 身份验证密码,
 	},
@@ -201,7 +180,7 @@ danmu-server
 
 ### 全局审核
 ```javascript
-"audit": { // 审核扩展			
+"audit": { // 审核扩展
 }
 ```
 
