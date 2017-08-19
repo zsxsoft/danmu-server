@@ -25,12 +25,11 @@ module.exports = {
       io.on('connection', socket => {
         // 向客户端推送密码请求
         socket.emit('init', 'Require Password.')
-        log.log('检测到客户端' + socket.id + '连接')
         socket.on('password', data => {
           let room = data.room
           if (!config.rooms[room]) {
             socket.emit('init', 'Room Not Found')
-            log.log(socket.id + '试图加入未定义房间')
+            log.log(`${socket.id}试图加入未定义房间`)
             return false
           }
           if (data.password !== config.rooms[room].connectpassword) {
@@ -41,12 +40,12 @@ module.exports = {
             log.log('该版本弹幕客户端过老，请更新弹幕客户端。')
             return false
           }
+          log.log(`客户端 ${socket.id}（${data.info.version}） in ${socket.conn.remoteAddress} 连接于 ${room}`)
           socket.join(room)
           socket.emit('connected', {
             version, // eslint-disable-line
             randomNumber: inProcessRandomNumber // 用于给客户端检测服务器是重启还是断线
           })
-          log.log(socket.id + '加入' + room)
         })
       })
       socketEvent.created.emit(io)
