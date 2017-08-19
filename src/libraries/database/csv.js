@@ -21,7 +21,7 @@ module.exports.init = function (callback) {
     joinArray.push(formatContent(data.text))
     joinArray.push('\r\n')
     fs.appendFile(path.resolve(savePath, data.room + '.csv'), joinArray.join(','), err => {
-      log.log(err)
+      if (err) log.log(err)
     })
   })
 

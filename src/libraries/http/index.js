@@ -20,8 +20,11 @@ module.exports = {
       .use(errorHandler())
       .set('view engine', 'html')
       .set('views', path.join(__dirname, './view/'))
+      .use('/static/bootstrap', express.static(path.join(__dirname, '../../../node_modules/bootstrap/dist/')))
+      .use('/static/jquery', express.static(path.join(__dirname, '../../../node_modules/jquery/dist/')))
+      .use('/static/angular', express.static(path.join(__dirname, '../../../node_modules/angular/')))
+      .use('/static/angular-ui-bootstrap', express.static(path.join(__dirname,  '../../../node_modules/angular-ui-bootstrap/')))
       .use(express.static(path.join(__dirname, './res/')))
-
     httpEvent.beforeRoute.emit(app)
 
     // 处理路由
